@@ -21,7 +21,7 @@ namespace Database
         public User Login(string name, string password)
         {
             string hashedPassword = HashMD5(password);
-            return Pet.Users.FirstOrDefault(user => user.Name == name && user.Password == hashedPassword);
+            return Pet.Users.FirstOrDefault(user => user.Username == name && user.Password == hashedPassword);
         }
 
         public User AddNewUser(string username,
