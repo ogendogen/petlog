@@ -49,10 +49,8 @@ namespace Database
                 entity.Property(e => e.PostalCode).IsRequired();
                 entity.Property(e => e.HouseNumber).IsRequired();
                 
-                entity.Property(e => e.AdoptedAnimals).IsRequired();
                 entity.HasMany(e => e.AdoptedAnimals)
-                      .WithOne(e => e.Adoptive)
-                      .HasForeignKey(e => e.Adoptive);
+                      .WithOne(e => e.Adoptive);
             });
 
             modelBuilder.Entity<Lost>(entity =>
@@ -62,7 +60,6 @@ namespace Database
 
                 entity.Property(e => e.Date).IsRequired();
                 entity.Property(e => e.Description).IsRequired();
-                entity.Property(e => e.Animal).IsRequired();
             });
 
             modelBuilder.Entity<Death>(entity =>
@@ -72,7 +69,6 @@ namespace Database
 
                 entity.Property(e => e.Date).IsRequired();
                 entity.Property(e => e.Description).IsRequired();
-                entity.Property(e => e.Animal).IsRequired();
             });
 
             modelBuilder.Entity<Vaccination>(entity =>
@@ -82,7 +78,6 @@ namespace Database
 
                 entity.Property(e => e.Date).IsRequired();
                 entity.Property(e => e.Description).IsRequired();
-                entity.Property(e => e.Animal).IsRequired();
             });
 
             modelBuilder.Entity<Animal>(entity =>
@@ -95,8 +90,7 @@ namespace Database
                 entity.Property(e => e.JoinDate).IsRequired();
                 
                 entity.HasMany(e => e.Vaccinations)
-                    .WithOne(e => e.Animal)
-                    .HasForeignKey(e => e.Animal);
+                    .WithOne(e => e.Animal);
                 
                 entity.Property(e => e.Chip).IsRequired();
                 entity.HasIndex(e => e.Chip).IsUnique();
@@ -106,16 +100,15 @@ namespace Database
                 entity.Property(e => e.Treatments).IsRequired();
 
                 entity.HasOne(e => e.Adoptive)
-                    .WithMany(e => e.AdoptedAnimals)
-                    .HasForeignKey(e => e.Adoptive);
+                    .WithMany(e => e.AdoptedAnimals);
 
                 entity.HasOne(e => e.DeathInfo)
                     .WithOne(e => e.Animal)
-                    .HasForeignKey<Death>(e => e.Animal);
+                    .HasForeignKey<Death>(e => e.AnimalID);
 
                 entity.HasOne(e => e.LostInfo)
                     .WithOne(e => e.Animal)
-                    .HasForeignKey<Lost>(e => e.Animal);
+                    .HasForeignKey<Lost>(e => e.AnimalID);
             });
         }
     }
