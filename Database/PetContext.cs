@@ -12,7 +12,7 @@ namespace Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;database=vet;user=root;password=");
+            optionsBuilder.UseMySql("server=localhost;database=pet;user=root;password=");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
