@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Database
 {
-    internal class AnimalContext : DbContext
+    internal class VetContext : DbContext
     {
         internal DbSet<Animal> Animals { get; set; }
         internal DbSet<User> Users { get; set; }
