@@ -40,6 +40,26 @@ namespace Database
             return Vet.Users.Add(user).Entity;
         }
 
+        public void RemoveUser(User user)
+        {
+            if (!Vet.Users.Any(dbUser => dbUser.ID == user.ID))
+            {
+                throw new Exception("Taki użytkownik nie istnieje!");
+            }
+
+            Vet.Users.Remove(user);
+        }
+
+        public void UpdateUser(User user)
+        {
+            if (!Vet.Users.Any(dbUser => dbUser.ID == user.ID))
+            {
+                throw new Exception("Taki użytkownik nie istnieje!");
+            }
+
+            Vet.Users.Update(user);
+        }
+
         private string HashMD5(string password)
         {
             byte[] encodedPassword = new UTF8Encoding().GetBytes(password);
