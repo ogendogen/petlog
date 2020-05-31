@@ -11,6 +11,12 @@ namespace Database
     public class UsersManager
     {
         internal VetContext Vet { get; set; }
+
+        public UsersManager()
+        {
+            Vet.Database.EnsureCreated();
+        }
+
         public User Login(string name, string password)
         {
             string hashedPassword = HashMD5(password);

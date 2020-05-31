@@ -11,6 +11,11 @@ namespace Database
     {
         internal VetContext Vet { get; set; }
 
+        public AnimalsManager()
+        {
+            Vet.Database.EnsureCreated();
+        }
+
         public List<Animal> GetAllAnimals()
         {
             return Vet.Animals.ToList();
