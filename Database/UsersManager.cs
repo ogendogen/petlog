@@ -14,6 +14,7 @@ namespace Database
 
         public UsersManager()
         {
+            Vet = new VetContext();
             Vet.Database.EnsureCreated();
         }
 

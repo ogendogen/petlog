@@ -13,6 +13,7 @@ namespace Database
 
         public AnimalsManager()
         {
+            Vet = new VetContext();
             Vet.Database.EnsureCreated();
         }
 
