@@ -13,10 +13,11 @@ namespace Database.Models
         public ICollection<Vaccination> Vaccinations { get; set; }
         public int Chip { get; set; }
         public string Description { get; set; }
+        public string State { get; set; }
+        public string Treatments { get; set; }
+        #nullable enable
         public Adopter? Adopter { get; set; }
         public Death? DeathInfo { get; set; }
         public Lost? LostInfo { get; set; }
-        public string State { get; set; }
-        public string Treatments { get; set; }
     }
 }
