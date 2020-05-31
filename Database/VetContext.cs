@@ -20,6 +20,7 @@ namespace Database
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.Property(e => e.ID).IsRequired().ValueGeneratedOnAdd();
                 entity.HasKey(e => e.ID);
 
                 entity.Property(e => e.Username).IsRequired();
@@ -33,7 +34,9 @@ namespace Database
 
             modelBuilder.Entity<Adopter>(entity =>
             {
+                entity.Property(e => e.ID).IsRequired().ValueGeneratedOnAdd();
                 entity.HasKey(e => e.ID);
+
                 entity.Property(e => e.Name).IsRequired();
                 entity.Property(e => e.Surname).IsRequired();
 
@@ -50,7 +53,9 @@ namespace Database
 
             modelBuilder.Entity<Lost>(entity =>
             {
+                entity.Property(e => e.ID).IsRequired().ValueGeneratedOnAdd();
                 entity.HasKey(e => e.ID);
+
                 entity.Property(e => e.Date).IsRequired();
                 entity.Property(e => e.Description).IsRequired();
                 entity.Property(e => e.Animal).IsRequired();
@@ -58,7 +63,9 @@ namespace Database
 
             modelBuilder.Entity<Death>(entity =>
             {
+                entity.Property(e => e.ID).IsRequired().ValueGeneratedOnAdd();
                 entity.HasKey(e => e.ID);
+
                 entity.Property(e => e.Date).IsRequired();
                 entity.Property(e => e.Description).IsRequired();
                 entity.Property(e => e.Animal).IsRequired();
@@ -66,7 +73,9 @@ namespace Database
 
             modelBuilder.Entity<Vaccination>(entity =>
             {
+                entity.Property(e => e.ID).IsRequired().ValueGeneratedOnAdd();
                 entity.HasKey(e => e.ID);
+
                 entity.Property(e => e.Date).IsRequired();
                 entity.Property(e => e.Description).IsRequired();
                 entity.Property(e => e.Animal).IsRequired();
@@ -74,7 +83,9 @@ namespace Database
 
             modelBuilder.Entity<Animal>(entity =>
             {
+                entity.Property(e => e.ID).IsRequired().ValueGeneratedOnAdd();
                 entity.HasKey(e => e.ID);
+
                 entity.Property(e => e.Type).IsRequired();
                 entity.Property(e => e.BirthDate).IsRequired();
                 entity.Property(e => e.JoinDate).IsRequired();
