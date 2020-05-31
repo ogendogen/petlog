@@ -15,5 +15,6 @@ namespace Database.Models
         [MaxLength(64)]
         public string Email { get; set; }
         public int Telephone { get; set; }
+        public Animal Animal { get; set; }
     }
 }
