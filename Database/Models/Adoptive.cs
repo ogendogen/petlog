@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Database.Models
 {
-    public class Adopter
+    public class Adoptive
     {
         public int ID { get; set; }
         [MaxLength(32)]
@@ -23,6 +23,6 @@ namespace Database.Models
         public string PostalCode { get; set; }
         public int HouseNumber { get; set; }
         public int? FlatNumber { get; set; }
-        public Animal Animal { get; set; }
+        public virtual ICollection<Animal> AdoptedAnimals { get; set; }
     }
 }
