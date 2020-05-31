@@ -51,8 +51,8 @@ namespace Database
                 
                 entity.Property(e => e.AdoptedAnimals).IsRequired();
                 entity.HasMany(e => e.AdoptedAnimals)
-                      .WithOne(e => e.Adopter)
-                      .HasForeignKey(e => e.Adopter);
+                      .WithOne(e => e.Adoptive)
+                      .HasForeignKey(e => e.Adoptive);
             });
 
             modelBuilder.Entity<Lost>(entity =>
@@ -105,9 +105,9 @@ namespace Database
                 entity.Property(e => e.State).IsRequired();
                 entity.Property(e => e.Treatments).IsRequired();
 
-                entity.HasOne(e => e.Adopter)
+                entity.HasOne(e => e.Adoptive)
                     .WithMany(e => e.AdoptedAnimals)
-                    .HasForeignKey(e => e.Adopter);
+                    .HasForeignKey(e => e.Adoptive);
 
                 entity.HasOne(e => e.DeathInfo)
                     .WithOne(e => e.Animal)
