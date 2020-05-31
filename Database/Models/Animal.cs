@@ -10,7 +10,7 @@ namespace Database.Models
         public AnimalType Type { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime JoinDate { get; set; }
-        public ICollection<Vaccination> Vaccinations { get; set; }
+        public virtual ICollection<Vaccination> Vaccinations { get; set; }
         public int Chip { get; set; }
         public string Description { get; set; }
         public string State { get; set; }
