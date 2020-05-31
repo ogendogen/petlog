@@ -91,9 +91,19 @@ namespace Database
 
         public void UpdateAnimal(Animal animal)
         {
-            if (!Pet.Animals.Any(animal => animal.ID == animal.ID))
+            if (!Pet.Animals.Any(dbAnimal => dbAnimal.ID == animal.ID))
             {
                 throw new Exception("Taki zwierzak nie istnieje!");
+            }
+
+            if (animal.Chip.ToString().Length != 15)
+            {
+                throw new Exception("Numer chip nie składa się z 15 cyfr!");
+            }
+
+            if (Pet.Animals.Any(dbAnimal => dbAnimal.Chip == animal.Chip))
+            {
+                throw new Exception("Taki numer chip już istnieje w bazie!");
             }
 
             Pet.Animals.Update(animal);
