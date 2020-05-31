@@ -32,7 +32,7 @@ namespace Database
                 entity.Property(e => e.IsAdmin).IsRequired();
             });
 
-            modelBuilder.Entity<Adopter>(entity =>
+            modelBuilder.Entity<Adoptive>(entity =>
             {
                 entity.Property(e => e.ID).IsRequired().ValueGeneratedOnAdd();
                 entity.HasKey(e => e.ID);
@@ -48,7 +48,11 @@ namespace Database
                 entity.Property(e => e.Street).IsRequired();
                 entity.Property(e => e.PostalCode).IsRequired();
                 entity.Property(e => e.HouseNumber).IsRequired();
-                entity.Property(e => e.Animal).IsRequired();
+                
+                entity.Property(e => e.AdoptedAnimals).IsRequired();
+                entity.HasMany(e => e.AdoptedAnimals)
+                      .WithOne(e => e.Adopter)
+                      .HasForeignKey(e => e.Adopter);
             });
 
             modelBuilder.Entity<Lost>(entity =>
@@ -102,8 +106,8 @@ namespace Database
                 entity.Property(e => e.Treatments).IsRequired();
 
                 entity.HasOne(e => e.Adopter)
-                    .WithOne(e => e.Animal)
-                    .HasForeignKey<Adopter>(e => e.Animal);
+                    .WithMany(e => e.AdoptedAnimals)
+                    .HasForeignKey(e => e.Adopter);
 
                 entity.HasOne(e => e.DeathInfo)
                     .WithOne(e => e.Animal)

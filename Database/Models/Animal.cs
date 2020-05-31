@@ -16,7 +16,7 @@ namespace Database.Models
         public string State { get; set; }
         public string Treatments { get; set; }
         #nullable enable
-        public Adopter? Adopter { get; set; }
+        public Adoptive? Adopter { get; set; }
         public Death? DeathInfo { get; set; }
         public Lost? LostInfo { get; set; }
     }
