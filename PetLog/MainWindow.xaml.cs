@@ -22,11 +22,9 @@ namespace PetLog
     public partial class MainWindow : Window
     {
         public UsersManager UsersManager { get; set; }
-        public AnimalsManager AnimalManager { get; set; }
         public MainWindow()
         {
             UsersManager = new UsersManager();
-            AnimalManager = new AnimalsManager();
             InitializeComponent();
         }
     }
