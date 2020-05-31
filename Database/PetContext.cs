@@ -8,6 +8,7 @@ namespace Database
     {
         internal DbSet<Animal> Animals { get; set; }
         internal DbSet<User> Users { get; set; }
+        internal DbSet<Adoptive> Adoptives { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
