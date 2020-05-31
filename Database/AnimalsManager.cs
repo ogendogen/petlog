@@ -9,11 +9,11 @@ namespace Database
 {
     public class AnimalsManager
     {
-        internal VetContext Vet { get; set; }
+        internal PetContext Vet { get; set; }
 
         public AnimalsManager()
         {
-            Vet = new VetContext();
+            Vet = new PetContext();
             Vet.Database.EnsureCreated();
         }
 

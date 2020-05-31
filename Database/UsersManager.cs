@@ -10,11 +10,11 @@ namespace Database
 {
     public class UsersManager
     {
-        internal VetContext Vet { get; set; }
+        internal PetContext Vet { get; set; }
 
         public UsersManager()
         {
-            Vet = new VetContext();
+            Vet = new PetContext();
             Vet.Database.EnsureCreated();
         }
 
