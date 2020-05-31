@@ -10,18 +10,18 @@ namespace Database
 {
     public class UsersManager
     {
-        internal PetContext Vet { get; set; }
+        internal PetContext Pet { get; set; }
 
         public UsersManager()
         {
-            Vet = new PetContext();
-            Vet.Database.EnsureCreated();
+            Pet = new PetContext();
+            Pet.Database.EnsureCreated();
         }
 
         public User Login(string name, string password)
         {
             string hashedPassword = HashMD5(password);
-            return Vet.Users.FirstOrDefault(user => user.Name == name && user.Password == hashedPassword);
+            return Pet.Users.FirstOrDefault(user => user.Name == name && user.Password == hashedPassword);
         }
 
         public User AddNewUser(string username,
@@ -31,7 +31,7 @@ namespace Database
                                bool isAdmin)
         {
             string hashedPassword = HashMD5(password);
-            if (Vet.Users.Any(user => user.Username == username))
+            if (Pet.Users.Any(user => user.Username == username))
             {
                 throw new Exception("Taki login jest już zajęty!");
             }
@@ -44,32 +44,32 @@ namespace Database
                 IsAdmin = isAdmin
             };
 
-            return Vet.Users.Add(user).Entity;
+            return Pet.Users.Add(user).Entity;
         }
 
         public void RemoveUser(User user)
         {
-            if (!Vet.Users.Any(dbUser => dbUser.ID == user.ID))
+            if (!Pet.Users.Any(dbUser => dbUser.ID == user.ID))
             {
                 throw new Exception("Taki użytkownik nie istnieje!");
             }
 
-            Vet.Users.Remove(user);
+            Pet.Users.Remove(user);
         }
 
         public void UpdateUser(User user)
         {
-            if (!Vet.Users.Any(dbUser => dbUser.ID == user.ID))
+            if (!Pet.Users.Any(dbUser => dbUser.ID == user.ID))
             {
                 throw new Exception("Taki użytkownik nie istnieje!");
             }
 
-            Vet.Users.Update(user);
+            Pet.Users.Update(user);
         }
 
         public int SaveChanges()
         {
-            return Vet.SaveChanges();
+            return Pet.SaveChanges();
         }
 
         private string HashMD5(string password)

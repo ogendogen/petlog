@@ -9,22 +9,22 @@ namespace Database
 {
     public class AnimalsManager
     {
-        internal PetContext Vet { get; set; }
+        internal PetContext Pet { get; set; }
 
         public AnimalsManager()
         {
-            Vet = new PetContext();
-            Vet.Database.EnsureCreated();
+            Pet = new PetContext();
+            Pet.Database.EnsureCreated();
         }
 
         public List<Animal> GetAllAnimals()
         {
-            return Vet.Animals.ToList();
+            return Pet.Animals.ToList();
         }
 
         public Animal GetAnimalById(int id)
         {
-            return Vet.Animals.FirstOrDefault(animal => animal.ID == id);
+            return Pet.Animals.FirstOrDefault(animal => animal.ID == id);
         }
 
         public Animal AddNewAnimal(AnimalType type,
@@ -56,7 +56,7 @@ namespace Database
                 throw new Exception("Numer chip nie składa się z 15 cyfr!");
             }
 
-            if (Vet.Animals.Any(animal => animal.Chip == chip))
+            if (Pet.Animals.Any(animal => animal.Chip == chip))
             {
                 throw new Exception("Taki numer chip już istnieje w bazie!");
             }
@@ -86,32 +86,32 @@ namespace Database
                 LostInfo = lostInfo
             };
 
-            return Vet.Animals.Add(animal).Entity;
+            return Pet.Animals.Add(animal).Entity;
         }
 
         public void UpdateAnimal(Animal animal)
         {
-            if (!Vet.Animals.Any(animal => animal.ID == animal.ID))
+            if (!Pet.Animals.Any(animal => animal.ID == animal.ID))
             {
                 throw new Exception("Taki zwierzak nie istnieje!");
             }
 
-            Vet.Animals.Update(animal);
+            Pet.Animals.Update(animal);
         }
 
         public void RemoveAnimal(Animal animal)
         {
-            if (!Vet.Animals.Any(animal => animal.ID == animal.ID))
+            if (!Pet.Animals.Any(animal => animal.ID == animal.ID))
             {
                 throw new Exception("Taki zwierzak nie istnieje!");
             }
 
-            Vet.Animals.Remove(animal);
+            Pet.Animals.Remove(animal);
         }
 
         public int SaveChanges()
         {
-            return Vet.SaveChanges();
+            return Pet.SaveChanges();
         }
     }
 }
