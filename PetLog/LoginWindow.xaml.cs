@@ -25,6 +25,7 @@ namespace PetLog
         public MainWindow()
         {
             UsersManager = new UsersManager();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
     }
