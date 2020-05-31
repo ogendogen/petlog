@@ -15,6 +15,14 @@ namespace Database.Models
         [MaxLength(64)]
         public string Email { get; set; }
         public int Telephone { get; set; }
+        [MaxLength(64)]
+        public string City { get; set; }
+        [MaxLength(64)]
+        public string Street { get; set; }
+        [MaxLength(64)]
+        public string PostalCode { get; set; }
+        public int HouseNumber { get; set; }
+        public int? FlatNumber { get; set; }
         public Animal Animal { get; set; }
     }
 }
