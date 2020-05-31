@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Database;
 
 namespace PetLog
 {
@@ -20,8 +21,12 @@ namespace PetLog
     /// </summary>
     public partial class MainWindow : Window
     {
+        public UsersManager UsersManager { get; set; }
+        public AnimalsManager AnimalManager { get; set; }
         public MainWindow()
         {
+            UsersManager = new UsersManager();
+            AnimalManager = new AnimalsManager();
             InitializeComponent();
         }
     }
