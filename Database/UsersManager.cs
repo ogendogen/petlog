@@ -60,6 +60,11 @@ namespace Database
             Vet.Users.Update(user);
         }
 
+        public int SaveChanges()
+        {
+            return Vet.SaveChanges();
+        }
+
         private string HashMD5(string password)
         {
             byte[] encodedPassword = new UTF8Encoding().GetBytes(password);
