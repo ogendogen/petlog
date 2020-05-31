@@ -79,5 +79,10 @@ namespace Database
         {
             return Pet.Animals.Where(animal => animal.Adoptive.ID == adoptive.ID);
         }
+
+        public int SaveChanges()
+        {
+            return Pet.SaveChanges();
+        }
     }
 }
