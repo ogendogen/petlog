@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="AnimalsWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="AnimalsGrid"/>
+        <DataGrid x:Name="AnimalsGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Rodzaj" IsReadOnly="True" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Data Urodzin" IsReadOnly="True" Binding="{Binding BirthDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
+                <DataGridTextColumn Header="Data Przyjęcia" IsReadOnly="True" Binding="{Binding JoinDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
+                <DataGridTextColumn Header="Numer Chip" IsReadOnly="True" Binding="{Binding Chip}"/>
+                <DataGridTextColumn Header="Ogólny Opis" IsReadOnly="True" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Stan zwierzęcia" IsReadOnly="True" Binding="{Binding State}"/>
+                <DataGridTextColumn Header="Numer Chip" IsReadOnly="True" Binding="{Binding Chip}"/>
+                <DataGridTextColumn Header="Choroby" IsReadOnly="True" Binding="{Binding Treatments}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
