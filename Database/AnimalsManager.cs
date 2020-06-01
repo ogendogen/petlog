@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using Database.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Database
@@ -117,6 +120,12 @@ namespace Database
             }
 
             Pet.Animals.Remove(animal);
+        }
+
+        public ObservableCollection<Animal> Load()
+        {
+            Pet.Animals.Load();
+            return Pet.Animals.Local.ToObservableCollection();
         }
 
         public int SaveChanges()

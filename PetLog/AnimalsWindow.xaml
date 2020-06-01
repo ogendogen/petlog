@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="AnimalsWindow" Height="450" Width="800">
     <Grid>
-        <Label Content="Animals go here..." HorizontalAlignment="Left" Margin="247,191,0,0" VerticalAlignment="Top"/>
-
+        <DataGrid x:Name="AnimalsGrid"/>
     </Grid>
 </Window>

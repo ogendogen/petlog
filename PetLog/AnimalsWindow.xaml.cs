@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Database;
 using Database.Models;
 
 namespace PetLog
@@ -19,10 +20,13 @@ namespace PetLog
     public partial class AnimalsWindow : Window
     {
         public User User { get; }
+        public AnimalsManager AnimalsManager { get; set; }
         public AnimalsWindow(User user)
         {
             InitializeComponent();
             User = user;
+            AnimalsManager = new AnimalsManager();
+            AnimalsGrid.ItemsSource = AnimalsManager.Load();
 
             MessageBox.Show($"Witaj {User.Name} {User.Surname}");
         }
