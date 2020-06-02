@@ -20,7 +20,6 @@
                 <DataGridTextColumn Header="Numer Chip" IsReadOnly="True" Binding="{Binding Chip}"/>
                 <DataGridTextColumn Header="Ogólny Opis" IsReadOnly="True" Binding="{Binding Description}"/>
                 <DataGridTextColumn Header="Stan zwierzęcia" IsReadOnly="True" Binding="{Binding State}"/>
-                <DataGridTextColumn Header="Numer Chip" IsReadOnly="True" Binding="{Binding Chip}"/>
                 <DataGridTextColumn Header="Choroby" IsReadOnly="True" Binding="{Binding Treatments}"/>
             </DataGrid.Columns>
         </DataGrid>
