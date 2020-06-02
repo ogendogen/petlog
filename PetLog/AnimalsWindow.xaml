@@ -6,11 +6,15 @@
         xmlns:local="clr-namespace:PetLog"
         mc:Ignorable="d"
         Title="AnimalsWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:AnimalConverter x:Key="AnimalConverterKey"/>
+    </Window.Resources>
+
     <Grid>
         <DataGrid x:Name="AnimalsGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding ID}"/>
-                <DataGridTextColumn Header="Rodzaj" IsReadOnly="True" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Rodzaj" IsReadOnly="True" Binding="{Binding Type, Converter={StaticResource AnimalConverterKey}}"/>
                 <DataGridTextColumn Header="Data Urodzin" IsReadOnly="True" Binding="{Binding BirthDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
                 <DataGridTextColumn Header="Data Przyjęcia" IsReadOnly="True" Binding="{Binding JoinDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
                 <DataGridTextColumn Header="Numer Chip" IsReadOnly="True" Binding="{Binding Chip}"/>
