@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Database.Models
@@ -11,7 +12,8 @@ namespace Database.Models
         public DateTime BirthDate { get; set; }
         public DateTime JoinDate { get; set; }
         public virtual ICollection<Vaccination> Vaccinations { get; set; }
-        public int Chip { get; set; }
+        [MaxLength(15)]
+        public string Chip { get; set; }
         public string Description { get; set; }
         public string State { get; set; }
         public string Treatments { get; set; }

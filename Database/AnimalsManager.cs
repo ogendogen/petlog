@@ -34,7 +34,7 @@ namespace Database
                                  DateTime birthDate,
                                  DateTime joinDate,
                                  ICollection<Vaccination> vaccinations,
-                                 int chip,
+                                 string chip,
                                  string description,
                                  string state,
                                  string treatments,
