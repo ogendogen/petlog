@@ -11,6 +11,7 @@
         <converters:CheckboxConverter x:Key="CheckboxConverter"/>
         <converters:ShortTextConverter x:Key="ShortTextConverter"/>
         <converters:VaccinationConverter x:Key="VaccinationConverter"/>
+        <converters:ReversedCheckboxConverter x:Key="ReversedCheckboxConverter"/>
     </Window.Resources>
 
     <Grid>
@@ -26,7 +27,7 @@
                 <DataGridTextColumn Header="Choroby" IsReadOnly="True" Binding="{Binding Treatments, Converter={StaticResource ShortTextConverter}}"/>
                 <DataGridTextColumn Header="Ostatnie szczepienie" IsReadOnly="True" Binding="{Binding Vaccinations, Converter={StaticResource VaccinationConverter}}"/>
                 <DataGridCheckBoxColumn Header="Adoptowany" IsReadOnly="True" Binding="{Binding Adoptive, Converter={StaticResource CheckboxConverter}, Mode=OneWay}"/>
-                <DataGridCheckBoxColumn Header="Żywy" IsReadOnly="True" Binding="{Binding DeathInfo, Converter={StaticResource CheckboxConverter}, Mode=OneWay}"/>
+                <DataGridCheckBoxColumn Header="Żywy" IsReadOnly="True" Binding="{Binding DeathInfo, Converter={StaticResource ReversedCheckboxConverter}, Mode=OneWay}"/>
                 <DataGridCheckBoxColumn Header="Zbiegł" IsReadOnly="True" Binding="{Binding LostInfo, Converter={StaticResource CheckboxConverter}, Mode=OneWay}"/>
             </DataGrid.Columns>
         </DataGrid>
