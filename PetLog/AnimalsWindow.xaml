@@ -3,12 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PetLog"
+        xmlns:local="clr-namespace:PetLog" xmlns:converters="clr-namespace:PetLog.Converters"
         mc:Ignorable="d"
         Title="AnimalsWindow" Height="450" Width="800">
     <Window.Resources>
-        <local:AnimalConverter x:Key="AnimalConverterKey"/>
-        <local:CheckboxConverter x:Key="CheckboxConverter"/>
+        <converters:AnimalConverter x:Key="AnimalConverterKey"/>
+        <converters:CheckboxConverter x:Key="CheckboxConverter"/>
+        <converters:ShortTextConverter x:Key="ShortTextConverter"/>
     </Window.Resources>
 
     <Grid>
@@ -19,9 +20,9 @@
                 <DataGridTextColumn Header="Data Urodzin" IsReadOnly="True" Binding="{Binding BirthDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
                 <DataGridTextColumn Header="Data Przyjęcia" IsReadOnly="True" Binding="{Binding JoinDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
                 <DataGridTextColumn Header="Numer Chip" IsReadOnly="True" Binding="{Binding Chip}"/>
-                <DataGridTextColumn Header="Ogólny Opis" IsReadOnly="True" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Ogólny Opis" IsReadOnly="True" Binding="{Binding Description, Converter={StaticResource ShortTextConverter}}"/>
                 <DataGridTextColumn Header="Stan zwierzęcia" IsReadOnly="True" Binding="{Binding State}"/>
-                <DataGridTextColumn Header="Choroby" IsReadOnly="True" Binding="{Binding Treatments}"/>
+                <DataGridTextColumn Header="Choroby" IsReadOnly="True" Binding="{Binding Treatments, Converter={StaticResource ShortTextConverter}}"/>
                 <DataGridCheckBoxColumn Header="Adoptowany" IsReadOnly="True" Binding="{Binding Adoptive, Converter={StaticResource CheckboxConverter}, Mode=OneWay}"/>
                 <DataGridCheckBoxColumn Header="Żywy" IsReadOnly="True" Binding="{Binding DeathInfo, Converter={StaticResource CheckboxConverter}, Mode=OneWay}"/>
                 <DataGridCheckBoxColumn Header="Zbiegł" IsReadOnly="True" Binding="{Binding LostInfo, Converter={StaticResource CheckboxConverter}, Mode=OneWay}"/>

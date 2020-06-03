@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Data;
 using Database.Models;
 
-namespace PetLog
+namespace PetLog.Converters
 {
     public class AnimalConverter : IValueConverter
     {
