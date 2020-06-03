@@ -8,6 +8,7 @@
         Title="AnimalsWindow" Height="450" Width="800">
     <Window.Resources>
         <local:AnimalConverter x:Key="AnimalConverterKey"/>
+        <local:IsAdoptedConverter x:Key="IsAdoptedConverter"/>
     </Window.Resources>
 
     <Grid>
@@ -21,6 +22,7 @@
                 <DataGridTextColumn Header="Ogólny Opis" IsReadOnly="True" Binding="{Binding Description}"/>
                 <DataGridTextColumn Header="Stan zwierzęcia" IsReadOnly="True" Binding="{Binding State}"/>
                 <DataGridTextColumn Header="Choroby" IsReadOnly="True" Binding="{Binding Treatments}"/>
+                <DataGridCheckBoxColumn Header="Adoptowany" IsReadOnly="True" Binding="{Binding Adoptive, Converter={StaticResource IsAdoptedConverter}, Mode=OneWay}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

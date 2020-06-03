@@ -124,7 +124,10 @@ namespace Database
 
         public ObservableCollection<Animal> Load()
         {
-            Pet.Animals.Load();
+            Pet.Animals.Include(animal => animal.Adoptive)
+                       .Include(animal => animal.DeathInfo)
+                       .Include(animal => animal.LostInfo)
+                       .Include(animal => animal.Vaccinations).Load();
             return Pet.Animals.Local.ToObservableCollection();
         }
 
