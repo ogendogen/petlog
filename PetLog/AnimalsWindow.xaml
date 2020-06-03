@@ -23,7 +23,7 @@
                 <DataGridTextColumn Header="Data Przyjęcia" IsReadOnly="True" Binding="{Binding JoinDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
                 <DataGridTextColumn Header="Numer Chip" IsReadOnly="True" Binding="{Binding Chip}"/>
                 <DataGridTextColumn Header="Ogólny Opis" IsReadOnly="True" Binding="{Binding Description, Converter={StaticResource ShortTextConverter}}"/>
-                <DataGridTextColumn Header="Stan zwierzęcia" IsReadOnly="True" Binding="{Binding State}"/>
+                <DataGridTextColumn Header="Stan zwierzęcia" IsReadOnly="True" Binding="{Binding State, Converter={StaticResource ShortTextConverter}}"/>
                 <DataGridTextColumn Header="Choroby" IsReadOnly="True" Binding="{Binding Treatments, Converter={StaticResource ShortTextConverter}}"/>
                 <DataGridTextColumn Header="Ostatnie szczepienie" IsReadOnly="True" Binding="{Binding Vaccinations, Converter={StaticResource VaccinationConverter}}"/>
                 <DataGridCheckBoxColumn Header="Adoptowany" IsReadOnly="True" Binding="{Binding Adoptive, Converter={StaticResource CheckboxConverter}, Mode=OneWay}"/>
