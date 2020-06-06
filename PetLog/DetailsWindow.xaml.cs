@@ -22,8 +22,8 @@ namespace PetLog
     public partial class DetailsWindow : Window
     {
         public Mode Mode { get; set; }
-        public AnimalsManager AnimalsManager { get; }
-        public Animal Animal { get; }
+        public AnimalsManager AnimalsManager { get; set; }
+        public Animal Animal { get; set; }
         public DetailsWindow(AnimalsManager animalsManager, Animal animal)
         {
             InitializeComponent();
@@ -31,6 +31,7 @@ namespace PetLog
             Animal = animal;
 
             Mode = Mode.Edit;
+            DataContext = animal;
         }
 
         public DetailsWindow(AnimalsManager animalsManager)
@@ -46,6 +47,11 @@ namespace PetLog
         {
             string input = sender.ToString();
             e.Handled = input.All(x => Char.IsDigit(x));
+        }
+
+        private void InformationWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            AnimalTypeComboBox.ItemsSource = Enum.GetValues(typeof(AnimalType)).Cast<AnimalType>();
         }
     }
 }
