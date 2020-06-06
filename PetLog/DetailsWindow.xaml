@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetLog"
         mc:Ignorable="d"
-        Title="DetailsWindow" Height="450" Width="800">
+        Title="DetailsWindow" Height="450" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -16,7 +16,26 @@
         </Grid.RowDefinitions>
         <TabControl Grid.Row="0" Grid.Column="0">
             <TabItem Header="Zwierze">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="ID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalIDTextBox" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="{Binding Animal.ID}" IsReadOnly="True"/>
+                    <Label Content="Imię" HorizontalAlignment="Left" Margin="108,9,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalNameTextBox" HorizontalAlignment="Left" Margin="108,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Animal.Name}"/>
+                    <Label Content="Typ" HorizontalAlignment="Left" Margin="270,10,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="AnimalTypeComboBox" HorizontalAlignment="Left" Margin="270,35,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Animal.Type}"/>
+                    <Label Content="Data urodzin" HorizontalAlignment="Left" Margin="445,10,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="AnimalBirthDateDatePicker" HorizontalAlignment="Left" Margin="445,34,0,0" VerticalAlignment="Top" SelectedDate="{Binding Animal.BirthDate}"/>
+                    <Label Content="Data dołączenia" HorizontalAlignment="Left" Margin="598,10,0,0" VerticalAlignment="Top"/>
+                    <DatePicker HorizontalAlignment="Left" Margin="598,34,0,0" VerticalAlignment="Top" SelectedDate="{Binding Animal.JoinDate}"/>
+                    <Label Content="Chip" HorizontalAlignment="Left" Margin="760,6,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalChipTextBox" HorizontalAlignment="Left" Margin="760,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Animal.Chip}" PreviewTextInput="AnimalChipTextBox_PreviewTextInput"/>
+                    <Label Content="Opis zwierzęcia" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalDescriptionTextBox" HorizontalAlignment="Left" Margin="10,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Animal.Description}"/>
+                    <Label Content="Stan zwierzęcia" HorizontalAlignment="Left" Margin="300,86,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalStateTextBox" HorizontalAlignment="Left" Margin="300,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232"/>
+                    <Label Content="Zabiegi u weterynarza" HorizontalAlignment="Left" Margin="598,86,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalStateTextBox_Copy" HorizontalAlignment="Left" Margin="598,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Animal.Treatments}"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Adoptujący">
                 <Grid Background="#FFE5E5E5"/>
