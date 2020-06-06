@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Database;
+using Database.Models;
 
 namespace PetLog
 {
@@ -17,9 +19,14 @@ namespace PetLog
     /// </summary>
     public partial class DetailsWindow : Window
     {
-        public DetailsWindow()
+        public Mode Mode { get; set; }
+        public AnimalsManager AnimalsManager { get; }
+        public Animal Animal { get; }
+        public DetailsWindow(AnimalsManager animalsManager, Animal animal)
         {
             InitializeComponent();
+            AnimalsManager = animalsManager;
+            Animal = animal;
         }
     }
 }

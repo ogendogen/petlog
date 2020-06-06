@@ -1,4 +1,4 @@
-﻿<Window x:Name="DetailsWindow" x:Class="PetLog.DetailsWindow"
+﻿<Window Name="InformationWindow" x:Class="PetLog.DetailsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,6 +7,33 @@
         mc:Ignorable="d"
         Title="DetailsWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" Grid.Column="0">
+            <TabItem Header="Zwierze">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Adoptujący">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Zgon">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Ucieczka">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Szczepienia">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">
+            <Button x:Name="SaveButton" Content="Zapisz" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="35" Margin="0,0,0,0" FontSize="20"/>
+            <Button x:Name="CancelButton" Content="Anuluj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="35" Margin="260,0,0,0" FontSize="20"/>
+        </Grid>
     </Grid>
 </Window>
