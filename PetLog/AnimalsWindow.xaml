@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetLog" xmlns:converters="clr-namespace:PetLog.Converters"
         mc:Ignorable="d"
-        Title="AnimalsWindow" Height="500" Width="1205" MinHeight="500" MinWidth="1205" Loaded="MainWindow_Loaded">
+        Title="AnimalsWindow" Height="500" Width="1271" MinHeight="500" MinWidth="1271" Loaded="MainWindow_Loaded">
     <Window.Resources>
         <converters:AnimalConverter x:Key="AnimalConverterKey"/>
         <converters:CheckboxConverter x:Key="CheckboxConverter"/>
@@ -26,6 +26,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="Rodzaj" IsReadOnly="True" Binding="{Binding Type, Converter={StaticResource AnimalConverterKey}}"/>
+                <DataGridTextColumn Header="Imię" IsReadOnly="True" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Data Urodzin" IsReadOnly="True" Binding="{Binding BirthDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
                 <DataGridTextColumn Header="Data Przyjęcia" IsReadOnly="True" Binding="{Binding JoinDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
                 <DataGridTextColumn Header="Numer Chip" IsReadOnly="True" Binding="{Binding Chip}"/>

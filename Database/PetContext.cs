@@ -86,6 +86,9 @@ namespace Database
                 entity.Property(e => e.ID).IsRequired().ValueGeneratedOnAdd();
                 entity.HasKey(e => e.ID);
 
+                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.Name).HasDefaultValue("Bez Imienia");
+
                 entity.Property(e => e.Type).IsRequired();
                 entity.Property(e => e.BirthDate).IsRequired();
                 entity.Property(e => e.JoinDate).IsRequired();
