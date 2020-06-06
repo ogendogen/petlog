@@ -39,10 +39,10 @@
             </DataGrid.Columns>
         </DataGrid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Width="Auto">
-            <Button Grid.Column="0" x:Name="AddButton" Content="Dodaj" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Margin="0,0,0,0" Width="260" FontSize="20" FontWeight="Normal"/>
-            <Button Grid.Column="1" x:Name="EditButton" Content="Edytuj" HorizontalAlignment="Left" Margin="260,0,0,0" VerticalAlignment="Top" Height="35" Width="260" FontSize="20"/>
-            <Button Grid.Column="2" x:Name="DeleteButton" HorizontalAlignment="Left" Margin="520,0,0,0" VerticalAlignment="Top" Height="35" Width="260" Content="Usuń" FontSize="20"/>
-            <Button Grid.Column="3" x:Name="UsersButton" HorizontalAlignment="Left" Margin="780,0,0,0" VerticalAlignment="Top" Height="35" Width="260" Content="Użytkownicy" FontSize="20"/>
+            <Button Grid.Column="0" x:Name="AddButton" Content="Dodaj" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Margin="0,0,0,0" Width="260" FontSize="20" FontWeight="Normal" Click="AddButton_Click"/>
+            <Button Grid.Column="1" x:Name="EditButton" Content="Edytuj" HorizontalAlignment="Left" Margin="260,0,0,0" VerticalAlignment="Top" Height="35" Width="260" FontSize="20" Click="EditButton_Click"/>
+            <Button Grid.Column="2" x:Name="DeleteButton" HorizontalAlignment="Left" Margin="520,0,0,0" VerticalAlignment="Top" Height="35" Width="260" Content="Usuń" FontSize="20" Click="DeleteButton_Click"/>
+            <Button Grid.Column="3" x:Name="UsersButton" HorizontalAlignment="Left" Margin="780,0,0,0" VerticalAlignment="Top" Height="35" Width="260" Content="Użytkownicy" FontSize="20" Click="UsersButton_Click"/>
         </Grid>
     </Grid>
 </Window>

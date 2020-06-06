@@ -27,6 +27,17 @@ namespace PetLog
             InitializeComponent();
             AnimalsManager = animalsManager;
             Animal = animal;
+
+            Mode = Mode.Edit;
+        }
+
+        public DetailsWindow(AnimalsManager animalsManager)
+        {
+            InitializeComponent();
+            AnimalsManager = animalsManager;
+            Animal = new Animal();
+
+            Mode = Mode.Add;
         }
     }
 }
