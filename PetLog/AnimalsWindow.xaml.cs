@@ -28,7 +28,19 @@ namespace PetLog
             AnimalsManager = new AnimalsManager();
             AnimalsGrid.ItemsSource = AnimalsManager.Load();
 
-            MessageBox.Show($"Witaj {User.Name} {User.Surname}");
+            MessageBox.Show($"Witaj {User.Name} {User.Surname}", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (User.IsAdmin)
+            {
+                UsersButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                UsersButton.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

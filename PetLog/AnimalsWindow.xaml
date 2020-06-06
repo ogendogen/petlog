@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetLog" xmlns:converters="clr-namespace:PetLog.Converters"
         mc:Ignorable="d"
-        Title="AnimalsWindow" Height="500" Width="800">
+        Title="AnimalsWindow" Height="500" Width="1205" MinHeight="500" MinWidth="1205" Loaded="MainWindow_Loaded">
     <Window.Resources>
         <converters:AnimalConverter x:Key="AnimalConverterKey"/>
         <converters:CheckboxConverter x:Key="CheckboxConverter"/>
@@ -38,10 +38,11 @@
                 <DataGridCheckBoxColumn Header="Zbiegł" IsReadOnly="True" Binding="{Binding LostInfo, Converter={StaticResource CheckboxConverter}, Mode=OneWay}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Width="780">
-            <Button Grid.Column="0" x:Name="AddButton" Content="Dodaj" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Margin="0,0,0,0" Width="260"/>
-            <Button Grid.Column="1" x:Name="AddButton_Copy" Content="Edytuj" HorizontalAlignment="Left" Margin="260,0,0,0" VerticalAlignment="Top" Height="35" Width="260"/>
-            <Button Grid.Column="2" x:Name="AddButton_Copy1" HorizontalAlignment="Left" Margin="520,0,0,0" VerticalAlignment="Top" Height="35" Width="260" Content="Usuń"/>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Width="Auto">
+            <Button Grid.Column="0" x:Name="AddButton" Content="Dodaj" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Margin="0,0,0,0" Width="260" FontSize="20" FontWeight="Normal"/>
+            <Button Grid.Column="1" x:Name="EditButton" Content="Edytuj" HorizontalAlignment="Left" Margin="260,0,0,0" VerticalAlignment="Top" Height="35" Width="260" FontSize="20"/>
+            <Button Grid.Column="2" x:Name="DeleteButton" HorizontalAlignment="Left" Margin="520,0,0,0" VerticalAlignment="Top" Height="35" Width="260" Content="Usuń" FontSize="20"/>
+            <Button Grid.Column="3" x:Name="UsersButton" HorizontalAlignment="Left" Margin="780,0,0,0" VerticalAlignment="Top" Height="35" Width="260" Content="Użytkownicy" FontSize="20"/>
         </Grid>
     </Grid>
 </Window>
