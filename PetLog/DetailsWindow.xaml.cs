@@ -31,7 +31,12 @@ namespace PetLog
             Animal = animal;
 
             Mode = Mode.Edit;
-            DataContext = animal;
+
+            AnimalTab.DataContext = animal;
+            AdoptiveTab.DataContext = animal.Adoptive;
+            DeathTab.DataContext = animal.DeathInfo;
+            LostTab.DataContext = animal.LostInfo;
+            VaccinationTab.DataContext = animal.Vaccinations;
         }
 
         public DetailsWindow(AnimalsManager animalsManager)

@@ -19,7 +19,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TabControl Grid.Row="0" Grid.Column="0">
-            <TabItem Header="Zwierze">
+            <TabItem Header="Zwierze" Name="AnimalTab">
                 <Grid Background="#FFE5E5E5">
                     <Label Content="ID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="AnimalIDTextBox" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="{Binding Path=ID}" IsReadOnly="True"/>
@@ -47,16 +47,16 @@
                     <TextBox x:Name="AnimalStateTextBox_Copy" HorizontalAlignment="Left" Margin="598,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Treatments}"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Adoptujący">
+            <TabItem Header="Adoptujący" Name="AdoptiveTab">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Zgon">
+            <TabItem Header="Zgon" Name="DeathTab">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Ucieczka">
+            <TabItem Header="Ucieczka" Name="LostTab">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="Szczepienia">
+            <TabItem Header="Szczepienia" Name="VaccinationTab">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
