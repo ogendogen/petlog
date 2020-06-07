@@ -9,6 +9,7 @@
         Title="DetailsWindow" Height="450" Width="950" MinHeight="450" MinWidth="950" Loaded="InformationWindow_Loaded">
     <Window.Resources>
         <converters:AnimalConverter x:Key="AnimalConverterKey"/>
+        <converters:AnimalToNameConverter x:Key="AnimalToNameConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -72,9 +73,9 @@
                 <Grid Background="#FFE5E5E5">
                     <DataGrid AutoGenerateColumns="False" Name="VaccinationsDataGrid">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Data szczepienia" Binding="{Binding Date}"/>
+                            <DataGridTextColumn Header="Data szczepienia" Binding="{Binding Date, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
                             <DataGridTextColumn Header="Opis szczepienia" Binding="{Binding Description}"/>
-                            <DataGridTextColumn Header="Zwierzę" Binding="{Binding Animal}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Zwierzę" Binding="{Binding Animal, Converter={StaticResource AnimalToNameConverter}}" IsReadOnly="True"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
