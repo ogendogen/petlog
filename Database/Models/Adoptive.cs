@@ -25,6 +25,10 @@ namespace Database.Models
         public int? FlatNumber { get; set; }
         public virtual ICollection<Animal> AdoptedAnimals { get; set; }
 
+        public Adoptive()
+        {
+            AdoptedAnimals = new List<Animal>();
+        }
         public override string ToString()
         {
             return $"{Name} {Surname}";

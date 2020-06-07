@@ -99,7 +99,78 @@ namespace PetLog
             {
                 try
                 {
-                    AnimalsManager.AddNewAnimal(Animal.Name,
+                    if (IsAliveCheckbox.IsChecked.Value)
+                    {
+                        if (!AnimalDeathDatePicker.SelectedDate.HasValue)
+                        {
+                            MessageBox.Show("Data śmierci nie jest wybrana!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+
+                        Animal.DeathInfo = new Death()
+                        {
+                            Date = AnimalDeathDatePicker.SelectedDate.Value,
+                            Description = AnimalDeathDescriptionTextBox.Text
+                        };
+                    }
+
+                    if (IsLostCheckbox.IsChecked.Value)
+                    {
+                        if (!AnimalLostDateDatePicker.SelectedDate.HasValue)
+                        {
+                            MessageBox.Show("Data ucieczki nie jest wybrana!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+
+                        Animal.LostInfo = new Lost()
+                        {
+                            Date = AnimalLostDateDatePicker.SelectedDate.Value,
+                            Description = AnimalLostDescriptionTextBox.Text
+                        };
+                    }
+
+                    if (AdoptiveTelephoneTextBox.Text.Any(c => !Char.IsDigit(c)))
+                    {
+                        MessageBox.Show("Numer telefonu zawiera inne znaki niż cyfry!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    int? flatNumber = null;
+                    string s_flatNumber = AdoptiveFlatNumberTextBox.Text;
+                    if (!String.IsNullOrEmpty(s_flatNumber))
+                    {
+                        if (s_flatNumber.Any(c => !Char.IsDigit(c)))
+                        {
+                            MessageBox.Show("Numer klatki zawiera inne znaki niż cyfry!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
+                        }
+                        else
+                        {
+                            flatNumber = Int32.Parse(s_flatNumber);
+                        }
+                    }
+
+                    if (IsAdoptedCheckbox.IsChecked.Value && Animal.Adoptive == null)
+                    {
+                        Animal.Adoptive = new Adoptive()
+                        {
+                            Name = AdoptiveNameTextBox.Text,
+                            Surname = AdoptiveSurnameTextBox.Text,
+                            Email = AdoptiveEmailTextBox.Text,
+                            Telephone = Int32.Parse(AdoptiveTelephoneTextBox.Text),
+                            City = AdoptiveCityTextBox.Text,
+                            Street = AdoptiveStreetTextBox.Text,
+                            PostalCode = AdoptivePostalCodeTextBox.Text,
+                            HouseNumber = Int32.Parse(AdoptiveHouseNumberTextBox.Text),
+                            FlatNumber = flatNumber,
+                        };
+                    }
+
+                    HashSet<Vaccination> vaccinations = new HashSet<Vaccination>();
+                    vaccinations = vaccinations.Concat(VaccinationsDataGrid.Items.OfType<Vaccination>()).ToHashSet();
+                    Animal.Vaccinations = vaccinations;
+
+                    var addedAnimal = AnimalsManager.AddNewAnimal(Animal.Name,
                             Animal.Type,
                             Animal.BirthDate,
                             Animal.JoinDate,

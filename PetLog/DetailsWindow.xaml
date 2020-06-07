@@ -58,25 +58,25 @@
                     <TextBox Name="AdoptiveSurnameTextBox" HorizontalAlignment="Left" Margin="260,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Surname}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
 
                     <Label Content="Email" HorizontalAlignment="Left" Margin="397,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Name="EmailTextBox" HorizontalAlignment="Left" Margin="397,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Email}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveEmailTextBox" HorizontalAlignment="Left" Margin="397,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Email}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
 
                     <Label Content="Numer Telefonu" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Telephone}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveTelephoneTextBox" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Telephone}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
 
                     <Label Content="Miasto" HorizontalAlignment="Left" Margin="147,69,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="147,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding City}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveCityTextBox" HorizontalAlignment="Left" Margin="147,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding City}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
 
                     <Label Content="Ulica" HorizontalAlignment="Left" Margin="284,69,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="284,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Street}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveStreetTextBox" HorizontalAlignment="Left" Margin="284,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Street}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
 
                     <Label Content="Kod Pocztowy" HorizontalAlignment="Left" Margin="421,69,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="421,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding PostalCode}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptivePostalCodeTextBox" HorizontalAlignment="Left" Margin="421,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding PostalCode}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
 
                     <Label Content="Numer Domu" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding HouseNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveHouseNumberTextBox" HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding HouseNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
 
                     <Label Content="Numer Mieszkania" HorizontalAlignment="Left" Margin="147,127,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="147,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding FlatNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveFlatNumberTextBox" HorizontalAlignment="Left" Margin="147,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding FlatNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
 
                     <Label Content="Lub wybierz z istniejących adoptujących:" HorizontalAlignment="Left" Margin="618,18,0,0" VerticalAlignment="Top"/>
                     <ComboBox Name="AdoptivesComboBox" HorizontalAlignment="Left" Margin="618,44,0,0" VerticalAlignment="Top" Width="171" SelectionChanged="AdoptivesComboBox_SelectionChanged"/>
@@ -86,19 +86,19 @@
             <TabItem Header="Zgon" Name="DeathTab">
                 <Grid Background="#FFE5E5E5">
                     <CheckBox Name="IsAliveCheckbox" Content="Nie żyje" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <DatePicker HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}" SelectedDateFormat="Short"/>
+                    <DatePicker Name="AnimalDeathDatePicker" HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}" SelectedDateFormat="Short"/>
                     <Label Content="Data zgonu" HorizontalAlignment="Left" Margin="109,6,0,0" VerticalAlignment="Top"/>
                     <Label Content="Szczegóły zgonu" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}"/>
+                    <TextBox Name="AnimalDeathDescriptionTextBox" HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Ucieczka" Name="LostTab">
                 <Grid Background="#FFE5E5E5">
                     <CheckBox Name="IsLostCheckbox" Content="Uciekł" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <DatePicker HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsLostCheckbox, Path=IsChecked}" SelectedDateFormat="Short"/>
+                    <DatePicker Name="AnimalLostDateDatePicker" HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsLostCheckbox, Path=IsChecked}" SelectedDateFormat="Short"/>
                     <Label Content="Data ucieczki" HorizontalAlignment="Left" Margin="109,6,0,0" VerticalAlignment="Top"/>
                     <Label Content="Szczegóły ucieczki" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsLostCheckbox, Path=IsChecked}"/>
+                    <TextBox Name="AnimalLostDescriptionTextBox" HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsLostCheckbox, Path=IsChecked}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Szczepienia" Name="VaccinationTab">
