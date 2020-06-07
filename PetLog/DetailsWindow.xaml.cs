@@ -40,6 +40,7 @@ namespace PetLog
                 animal
             };
             AnimalsComboBox.ItemsSource = new ObservableCollection<Animal>(thisAnimalList);
+            SaveButton.Content = "Zapisz zmiany";
         }
 
         public DetailsWindow(AnimalsManager animalsManager)
@@ -49,6 +50,7 @@ namespace PetLog
             Animal = new Animal();
 
             Mode = Mode.Add;
+            SaveButton.Content = "Dodaj";
         }
 
         private void AnimalChipTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
