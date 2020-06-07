@@ -86,6 +86,8 @@ namespace PetLog
             {
                 Animal.Adoptive = adoptive;
                 AdoptiveTab.DataContext = adoptive;
+                IsAdoptedCheckbox.IsChecked = true;
+                DiscardChoosenAdoptive.IsEnabled = true;
             }
         }
 
@@ -113,6 +115,18 @@ namespace PetLog
                     MessageBox.Show(ex.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void DiscardChoosenAdoptive_Click(object sender, RoutedEventArgs e)
+        {
+            IsAdoptedCheckbox.IsChecked = false;
+            DiscardChoosenAdoptive.IsEnabled = false;
+
+            Adoptive adoptive = new Adoptive();
+            Animal.Adoptive = adoptive;
+            AdoptiveTab.DataContext = adoptive;
+
+            AdoptivesComboBox.SelectedItem = null;
         }
     }
 }
