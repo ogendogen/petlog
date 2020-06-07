@@ -47,6 +47,8 @@ namespace PetLog
 
             Mode = Mode.Add;
             SaveButton.Content = "Dodaj";
+
+            VaccinationsDataGrid.ItemsSource = new ObservableCollection<Vaccination>();
         }
 
         private void AnimalChipTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -97,7 +99,8 @@ namespace PetLog
             {
                 try
                 {
-                    AnimalsManager.AddNewAnimal(Animal.Type,
+                    AnimalsManager.AddNewAnimal(Animal.Name,
+                            Animal.Type,
                             Animal.BirthDate,
                             Animal.JoinDate,
                             Animal.Vaccinations,
