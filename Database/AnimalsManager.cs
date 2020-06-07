@@ -134,8 +134,7 @@ namespace Database
 
         public ObservableCollection<Vaccination> GetAnimalVaccinations(Animal animal)
         {
-            //Pet.Vaccination.Include(vacc => vacc.Animal).Load();
-            Pet.Vaccination.Where(vacc => vacc.Animal.ID == animal.ID).Include(vacc => vacc.Animal).Load();
+            Pet.Vaccination.Include(vacc => vacc.Animal).Load();
             return Pet.Vaccination.Local.ToObservableCollection();
         }
 

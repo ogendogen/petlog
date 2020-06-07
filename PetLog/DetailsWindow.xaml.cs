@@ -32,7 +32,7 @@ namespace PetLog
 
             Mode = Mode.Edit;
             InitializeComponent();
-            VaccinationsDataGrid.ItemsSource = AnimalsManager.GetAnimalVaccinations(Animal);
+            VaccinationsDataGrid.ItemsSource = new ObservableCollection<Vaccination>(AnimalsManager.GetAnimalVaccinations(Animal).Where(vacc => vacc.Animal.ID == animal.ID));
         }
 
         public DetailsWindow(AnimalsManager animalsManager)
