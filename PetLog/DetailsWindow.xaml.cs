@@ -31,12 +31,6 @@ namespace PetLog
             Animal = animal;
 
             Mode = Mode.Edit;
-
-            AnimalTab.DataContext = animal;
-            AdoptiveTab.DataContext = animal.Adoptive;
-            DeathTab.DataContext = animal.DeathInfo;
-            LostTab.DataContext = animal.LostInfo;
-            VaccinationTab.DataContext = animal.Vaccinations;
         }
 
         public DetailsWindow(AnimalsManager animalsManager)
@@ -57,6 +51,14 @@ namespace PetLog
         private void InformationWindow_Loaded(object sender, RoutedEventArgs e)
         {
             AnimalTypeComboBox.ItemsSource = Enum.GetValues(typeof(AnimalType)).Cast<AnimalType>();
+            
+            AnimalTab.DataContext = Animal;
+            AdoptiveTab.DataContext = Animal.Adoptive;
+            DeathTab.DataContext = Animal.DeathInfo;
+            LostTab.DataContext = Animal.LostInfo;
+            VaccinationTab.DataContext = Animal.Vaccinations;
+
+            IsAliveCheckbox.IsChecked = (Animal.DeathInfo != null);
         }
     }
 }

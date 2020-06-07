@@ -51,7 +51,13 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Header="Zgon" Name="DeathTab">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <CheckBox Name="IsAliveCheckbox" Content="Nie żyje" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <DatePicker HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}" SelectedDateFormat="Long"/>
+                    <Label Content="Data zgonu" HorizontalAlignment="Left" Margin="109,6,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Szczegóły zgonu" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Ucieczka" Name="LostTab">
                 <Grid Background="#FFE5E5E5"/>
