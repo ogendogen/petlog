@@ -26,7 +26,13 @@
                     <Label Content="Imię" HorizontalAlignment="Left" Margin="108,9,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="AnimalNameTextBox" HorizontalAlignment="Left" Margin="108,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Name}"/>
                     <Label Content="Typ" HorizontalAlignment="Left" Margin="270,10,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="AnimalTypeComboBox" HorizontalAlignment="Left" Margin="270,35,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding Path=Type, Converter={StaticResource AnimalConverterKey}}"/>
+                    <ComboBox x:Name="AnimalTypeComboBox" HorizontalAlignment="Left" Margin="270,35,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding Path=Type}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource AnimalConverterKey}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <Label Content="Data urodzin" HorizontalAlignment="Left" Margin="445,10,0,0" VerticalAlignment="Top"/>
                     <DatePicker x:Name="AnimalBirthDateDatePicker" HorizontalAlignment="Left" Margin="445,34,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=BirthDate}"/>
                     <Label Content="Data dołączenia" HorizontalAlignment="Left" Margin="598,10,0,0" VerticalAlignment="Top"/>
