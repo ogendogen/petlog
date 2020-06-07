@@ -53,17 +53,31 @@
             <TabItem Header="Zgon" Name="DeathTab">
                 <Grid Background="#FFE5E5E5">
                     <CheckBox Name="IsAliveCheckbox" Content="Nie żyje" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <DatePicker HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}" SelectedDateFormat="Long"/>
+                    <DatePicker HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}" SelectedDateFormat="Short"/>
                     <Label Content="Data zgonu" HorizontalAlignment="Left" Margin="109,6,0,0" VerticalAlignment="Top"/>
                     <Label Content="Szczegóły zgonu" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Ucieczka" Name="LostTab">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <CheckBox Name="IsLostCheckbox" Content="Uciekł" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <DatePicker HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsLostCheckbox, Path=IsChecked}" SelectedDateFormat="Short"/>
+                    <Label Content="Data ucieczki" HorizontalAlignment="Left" Margin="109,6,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Szczegóły ucieczki" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsLostCheckbox, Path=IsChecked}"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Szczepienia" Name="VaccinationTab">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid AutoGenerateColumns="False" Name="VaccinationsDataGrid">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Data szczepienia" Binding="{Binding Date}"/>
+                            <DataGridTextColumn Header="Opis szczepienia" Binding="{Binding Description}"/>
+                            <DataGridTextColumn Header="Zwierzę" Binding="{Binding Animal}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
         </TabControl>
         <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">

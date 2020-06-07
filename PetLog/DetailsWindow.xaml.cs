@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -26,11 +27,12 @@ namespace PetLog
         public Animal Animal { get; set; }
         public DetailsWindow(AnimalsManager animalsManager, Animal animal)
         {
-            InitializeComponent();
             AnimalsManager = animalsManager;
             Animal = animal;
 
             Mode = Mode.Edit;
+            InitializeComponent();
+            VaccinationsDataGrid.ItemsSource = AnimalsManager.GetAnimalVaccinations(Animal);
         }
 
         public DetailsWindow(AnimalsManager animalsManager)
@@ -56,9 +58,10 @@ namespace PetLog
             AdoptiveTab.DataContext = Animal.Adoptive;
             DeathTab.DataContext = Animal.DeathInfo;
             LostTab.DataContext = Animal.LostInfo;
-            VaccinationTab.DataContext = Animal.Vaccinations;
+            VaccinationTab.DataContext = new Vaccination();
 
             IsAliveCheckbox.IsChecked = (Animal.DeathInfo != null);
+            IsLostCheckbox.IsChecked = (Animal.LostInfo != null);
         }
     }
 }

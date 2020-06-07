@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -129,6 +130,13 @@ namespace Database
                        .Include(animal => animal.LostInfo)
                        .Include(animal => animal.Vaccinations).Load();
             return Pet.Animals.Local.ToObservableCollection();
+        }
+
+        public ObservableCollection<Vaccination> GetAnimalVaccinations(Animal animal)
+        {
+            //Pet.Vaccination.Include(vacc => vacc.Animal).Load();
+            Pet.Vaccination.Where(vacc => vacc.Animal.ID == animal.ID).Include(vacc => vacc.Animal).Load();
+            return Pet.Vaccination.Local.ToObservableCollection();
         }
 
         public int SaveChanges()
