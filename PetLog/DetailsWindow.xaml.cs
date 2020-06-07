@@ -32,17 +32,11 @@ namespace PetLog
             Animal = animal;
 
             Mode = Mode.Edit;
-            InitializeComponent();
-            VaccinationsDataGrid.ItemsSource = new ObservableCollection<Vaccination>(AnimalsManager.GetAnimalVaccinations().Where(vacc => vacc.Animal.ID == animal.ID));
 
-            List<Animal> thisAnimalList = new List<Animal>
-            {
-                animal
-            };
-            AnimalsComboBox.ItemsSource = new ObservableCollection<Animal>(thisAnimalList);
+            InitializeComponent();
+
             SaveButton.Content = "Zapisz zmiany";
-            
-            AdoptivesComboBox.ItemsSource = new ObservableCollection<Adoptive>(AnimalsManager.GetAllAdoptivesInAlphabeticalOrder());
+            VaccinationsDataGrid.ItemsSource = new ObservableCollection<Vaccination>(AnimalsManager.GetAnimalVaccinations().Where(vacc => vacc.Animal.ID == Animal.ID));
         }
 
         public DetailsWindow(AnimalsManager animalsManager)
@@ -74,7 +68,15 @@ namespace PetLog
             IsAliveCheckbox.IsChecked = (Animal.DeathInfo != null);
             IsLostCheckbox.IsChecked = (Animal.LostInfo != null);
             IsAdoptedCheckbox.IsChecked = (Animal.Adoptive != null);
+
+            AdoptivesComboBox.ItemsSource = new ObservableCollection<Adoptive>(AnimalsManager.GetAllAdoptivesInAlphabeticalOrder());
             AdoptivesComboBox.SelectedItem = Animal.Adoptive;
+
+            List<Animal> thisAnimalList = new List<Animal>
+            {
+                Animal
+            };
+            AnimalsComboBox.ItemsSource = new ObservableCollection<Animal>(thisAnimalList);
         }
 
         private void AdoptivesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,6 +86,32 @@ namespace PetLog
             {
                 Animal.Adoptive = adoptive;
                 AdoptiveTab.DataContext = adoptive;
+            }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Mode == Mode.Add)
+            {
+                try
+                {
+                    AnimalsManager.AddNewAnimal(Animal.Type,
+                            Animal.BirthDate,
+                            Animal.JoinDate,
+                            Animal.Vaccinations,
+                            Animal.Chip,
+                            Animal.Description,
+                            Animal.State,
+                            Animal.Treatments,
+                            Animal.Adoptive,
+                            Animal.DeathInfo,
+                            Animal.LostInfo);
+                    AnimalsManager.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }

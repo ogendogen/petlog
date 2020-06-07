@@ -115,7 +115,7 @@
             </TabItem>
         </TabControl>
         <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">
-            <Button x:Name="SaveButton" Content="Zapisz" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="35" Margin="0,0,0,0" FontSize="20"/>
+            <Button x:Name="SaveButton" Content="Zapisz" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="35" Margin="0,0,0,0" FontSize="20" Click="SaveButton_Click"/>
             <Button x:Name="CancelButton" Content="Anuluj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="35" Margin="260,0,0,0" FontSize="20"/>
         </Grid>
     </Grid>
