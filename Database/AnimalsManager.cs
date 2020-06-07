@@ -31,7 +31,8 @@ namespace Database
             return Pet.Animals.FirstOrDefault(animal => animal.ID == id);
         }
 
-        public Animal AddNewAnimal(AnimalType type,
+        public Animal AddNewAnimal(string name,
+                                 AnimalType type,
                                  DateTime birthDate,
                                  DateTime joinDate,
                                  ICollection<Vaccination> vaccinations,
@@ -77,6 +78,7 @@ namespace Database
 
             Animal animal = new Animal()
             {
+                Name = name,
                 Type = type,
                 BirthDate = birthDate,
                 JoinDate = joinDate,
