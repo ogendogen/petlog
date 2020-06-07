@@ -74,6 +74,17 @@ namespace PetLog
             IsAliveCheckbox.IsChecked = (Animal.DeathInfo != null);
             IsLostCheckbox.IsChecked = (Animal.LostInfo != null);
             IsAdoptedCheckbox.IsChecked = (Animal.Adoptive != null);
+            AdoptivesComboBox.SelectedItem = Animal.Adoptive;
+        }
+
+        private void AdoptivesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            if (comboBox.SelectedItem is Adoptive adoptive)
+            {
+                Animal.Adoptive = adoptive;
+                AdoptiveTab.DataContext = adoptive;
+            }
         }
     }
 }

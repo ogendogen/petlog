@@ -79,7 +79,7 @@
                     <TextBox HorizontalAlignment="Left" Margin="147,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding FlatNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
                     
                     <Label Content="Lub wybierz z istniejących adoptujących:" HorizontalAlignment="Left" Margin="618,18,0,0" VerticalAlignment="Top"/>
-                    <ComboBox Name="AdoptivesComboBox" HorizontalAlignment="Left" Margin="618,44,0,0" VerticalAlignment="Top" Width="171"/>
+                    <ComboBox Name="AdoptivesComboBox" HorizontalAlignment="Left" Margin="618,44,0,0" VerticalAlignment="Top" Width="171" SelectionChanged="AdoptivesComboBox_SelectionChanged"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Zgon" Name="DeathTab">
