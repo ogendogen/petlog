@@ -48,7 +48,36 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Adoptujący" Name="AdoptiveTab">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <CheckBox Name="IsAdoptedCheckbox" Content="Adoptowany" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+                    <Label Content="Imię" HorizontalAlignment="Left" Margin="123,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="AdoptiveNameTextBox" HorizontalAlignment="Left" Margin="123,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Name}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+
+                    <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="AdoptiveSurnameTextBox" HorizontalAlignment="Left" Margin="260,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Surname}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+
+                    <Label Content="Email" HorizontalAlignment="Left" Margin="397,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="EmailTextBox" HorizontalAlignment="Left" Margin="397,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Email}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+
+                    <Label Content="Numer Telefonu" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Telephone}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+
+                    <Label Content="Miasto" HorizontalAlignment="Left" Margin="147,69,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="147,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding City}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+
+                    <Label Content="Ulica" HorizontalAlignment="Left" Margin="284,69,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="284,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Street}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+
+                    <Label Content="Kod Pocztowy" HorizontalAlignment="Left" Margin="421,69,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="421,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding PostalCode}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    
+                    <Label Content="Numer Domu" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding HouseNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+
+                    <Label Content="Numer Mieszkania" HorizontalAlignment="Left" Margin="147,127,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="147,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding FlatNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Zgon" Name="DeathTab">
                 <Grid Background="#FFE5E5E5">

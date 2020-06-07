@@ -69,6 +69,7 @@ namespace PetLog
 
             IsAliveCheckbox.IsChecked = (Animal.DeathInfo != null);
             IsLostCheckbox.IsChecked = (Animal.LostInfo != null);
+            IsAdoptedCheckbox.IsChecked = (Animal.Adoptive != null);
         }
     }
 }
