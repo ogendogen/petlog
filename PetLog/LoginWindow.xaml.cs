@@ -28,7 +28,7 @@ namespace PetLog
             {
                 UsersManager = new UsersManager();
             }
-            catch (Exception e)
+            catch (InvalidOperationException e)
             {
                 if (e.InnerException.Message.ToString() == "Unable to connect to any of the specified MySQL hosts.")
                 {
@@ -38,7 +38,11 @@ namespace PetLog
                 {
                     MessageBox.Show(e.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                Environment.Exit(0);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                throw e;
             }
 
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
