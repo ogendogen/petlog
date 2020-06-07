@@ -28,8 +28,8 @@
                 <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="Rodzaj" IsReadOnly="True" Binding="{Binding Type, Converter={StaticResource AnimalConverterKey}}"/>
                 <DataGridTextColumn Header="Imię" IsReadOnly="True" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Data Urodzin" IsReadOnly="True" Binding="{Binding BirthDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
-                <DataGridTextColumn Header="Data Przyjęcia" IsReadOnly="True" Binding="{Binding JoinDate, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
+                <DataGridTextColumn Header="Data Urodzin" IsReadOnly="True" Binding="{Binding BirthDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                <DataGridTextColumn Header="Data Przyjęcia" IsReadOnly="True" Binding="{Binding JoinDate, StringFormat=\{0:dd.MM.yyyy\}}"/>
                 <DataGridTextColumn Header="Numer Chip" IsReadOnly="True" Binding="{Binding Chip}"/>
                 <DataGridTextColumn Header="Ogólny Opis" IsReadOnly="True" Binding="{Binding Description, Converter={StaticResource ShortTextConverter}}"/>
                 <DataGridTextColumn Header="Stan zwierzęcia" IsReadOnly="True" Binding="{Binding State, Converter={StaticResource ShortTextConverter}}"/>
