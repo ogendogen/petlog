@@ -11,8 +11,12 @@ namespace PetLog.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Animal animal = (Animal)value;
-            return animal.Name;
+            if (value is Animal animal)
+            {
+                return animal.Name;
+            }
+
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -71,7 +71,7 @@
             </TabItem>
             <TabItem Header="Szczepienia" Name="VaccinationTab">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid AutoGenerateColumns="False" Name="VaccinationsDataGrid">
+                    <DataGrid AutoGenerateColumns="False" Name="VaccinationsDataGrid" CanUserAddRows="True" SelectionUnit="FullRow">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Data szczepienia" Binding="{Binding Date, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}"/>
                             <DataGridTextColumn Header="Opis szczepienia" Binding="{Binding Description}"/>
