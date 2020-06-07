@@ -25,6 +25,7 @@ namespace PetLog
         public Mode Mode { get; set; }
         public AnimalsManager AnimalsManager { get; set; }
         public Animal Animal { get; set; }
+        public ObservableCollection<Animal> Animals { get; set; }
         public DetailsWindow(AnimalsManager animalsManager, Animal animal)
         {
             AnimalsManager = animalsManager;
@@ -32,7 +33,13 @@ namespace PetLog
 
             Mode = Mode.Edit;
             InitializeComponent();
-            VaccinationsDataGrid.ItemsSource = new ObservableCollection<Vaccination>(AnimalsManager.GetAnimalVaccinations(Animal).Where(vacc => vacc.Animal.ID == animal.ID));
+            VaccinationsDataGrid.ItemsSource = new ObservableCollection<Vaccination>(AnimalsManager.GetAnimalVaccinations().Where(vacc => vacc.Animal.ID == animal.ID));
+
+            List<Animal> thisAnimalList = new List<Animal>
+            {
+                animal
+            };
+            AnimalsComboBox.ItemsSource = new ObservableCollection<Animal>(thisAnimalList);
         }
 
         public DetailsWindow(AnimalsManager animalsManager)

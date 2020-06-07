@@ -23,5 +23,10 @@ namespace Database.Models
         public Adoptive? Adoptive { get; set; }
         public Death? DeathInfo { get; set; }
         public Lost? LostInfo { get; set; }
+
+        public override string? ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,12 +22,14 @@ namespace PetLog
     {
         public User User { get; }
         public AnimalsManager AnimalsManager { get; set; }
+        public ObservableCollection<Animal> Animals { get; set; }
         public AnimalsWindow(User user)
         {
             InitializeComponent();
             User = user;
             AnimalsManager = new AnimalsManager();
-            AnimalsGrid.ItemsSource = AnimalsManager.Load();
+            Animals = AnimalsManager.Load();
+            AnimalsGrid.ItemsSource = Animals;
 
             MessageBox.Show($"Witaj {User.Name} {User.Surname}", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
         }

@@ -132,7 +132,7 @@ namespace Database
             return Pet.Animals.Local.ToObservableCollection();
         }
 
-        public ObservableCollection<Vaccination> GetAnimalVaccinations(Animal animal)
+        public ObservableCollection<Vaccination> GetAnimalVaccinations()
         {
             Pet.Vaccination.Include(vacc => vacc.Animal).Load();
             return Pet.Vaccination.Local.ToObservableCollection();
