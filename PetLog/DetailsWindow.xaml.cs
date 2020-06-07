@@ -41,6 +41,8 @@ namespace PetLog
             };
             AnimalsComboBox.ItemsSource = new ObservableCollection<Animal>(thisAnimalList);
             SaveButton.Content = "Zapisz zmiany";
+            
+            AdoptivesComboBox.ItemsSource = new ObservableCollection<Adoptive>(AnimalsManager.GetAllAdoptivesInAlphabeticalOrder());
         }
 
         public DetailsWindow(AnimalsManager animalsManager)

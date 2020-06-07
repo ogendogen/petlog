@@ -93,6 +93,11 @@ namespace Database
             return Pet.Animals.Add(animal).Entity;
         }
 
+        public IEnumerable<Adoptive> GetAllAdoptivesInAlphabeticalOrder()
+        {
+            return Pet.Adoptives.OrderBy(adoptive => adoptive.Name).ThenBy(adoptive => adoptive.Surname).ToList();
+        }
+
         public void UpdateAnimal(Animal animal)
         {
             if (!Pet.Animals.Any(dbAnimal => dbAnimal.ID == animal.ID))

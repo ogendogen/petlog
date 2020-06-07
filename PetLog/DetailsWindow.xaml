@@ -71,12 +71,15 @@
 
                     <Label Content="Kod Pocztowy" HorizontalAlignment="Left" Margin="421,69,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Margin="421,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding PostalCode}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
-                    
+
                     <Label Content="Numer Domu" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding HouseNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
 
                     <Label Content="Numer Mieszkania" HorizontalAlignment="Left" Margin="147,127,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Margin="147,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding FlatNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    
+                    <Label Content="Lub wybierz z istniejących adoptujących:" HorizontalAlignment="Left" Margin="618,18,0,0" VerticalAlignment="Top"/>
+                    <ComboBox Name="AdoptivesComboBox" HorizontalAlignment="Left" Margin="618,44,0,0" VerticalAlignment="Top" Width="171"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Zgon" Name="DeathTab">
