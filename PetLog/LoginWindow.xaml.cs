@@ -24,7 +24,23 @@ namespace PetLog
         public UsersManager UsersManager { get; set; }
         public LoginWindow()
         {
-            UsersManager = new UsersManager();
+            try
+            {
+                UsersManager = new UsersManager();
+            }
+            catch (Exception e)
+            {
+                if (e.InnerException.Message.ToString() == "Unable to connect to any of the specified MySQL hosts.")
+                {
+                    MessageBox.Show("Problem z połączeniem się do bazy danych! Sprawdź połączenie internetowe i spróbuj ponownie.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    MessageBox.Show(e.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                Environment.Exit(0);
+            }
+
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
