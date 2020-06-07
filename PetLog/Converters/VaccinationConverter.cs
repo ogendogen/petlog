@@ -13,7 +13,7 @@ namespace PetLog.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             HashSet<Vaccination> vaccinations = (HashSet<Vaccination>)value;
-            if (vaccinations.Count > 0)
+            if (vaccinations != null && vaccinations.Count > 0)
             {
                 DateTime dt = vaccinations.OrderByDescending(vacc => vacc.Date).First().Date;
                 return dt.ToString();

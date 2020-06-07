@@ -109,6 +109,7 @@ namespace PetLog
                             Animal.DeathInfo,
                             Animal.LostInfo);
                     AnimalsManager.SaveChanges();
+                    MessageBox.Show("Nowe zwierze dodane!", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch(Exception ex)
                 {
