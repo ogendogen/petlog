@@ -82,12 +82,6 @@ namespace PetLog
             AdoptivesComboBox.ItemsSource = new ObservableCollection<Adoptive>(AnimalsManager.GetAllAdoptivesInAlphabeticalOrder());
             AdoptivesComboBox.SelectedItem = Animal.Adoptive;
 
-            List<Animal> thisAnimalList = new List<Animal>
-            {
-                Animal
-            };
-            AnimalsComboBox.ItemsSource = new ObservableCollection<Animal>(thisAnimalList);
-
             AnimalBirthDateDatePicker.DisplayDateStart = DateTime.MinValue;
             AnimalBirthDateDatePicker.DisplayDateEnd = DateTime.Today;
 
@@ -190,6 +184,10 @@ namespace PetLog
 
                     HashSet<Vaccination> vaccinations = new HashSet<Vaccination>();
                     vaccinations = vaccinations.Concat(VaccinationsDataGrid.Items.OfType<Vaccination>()).ToHashSet();
+                    foreach (var vacc in vaccinations)
+                    {
+                        vacc.Animal = Animal;
+                    }
                     Animal.Vaccinations = vaccinations;
 
                     var addedAnimal = AnimalsManager.AddNewAnimal(Animal.Name,

@@ -118,9 +118,6 @@
                                 </DataGridTemplateColumn.CellEditingTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Opis szczepienia" Binding="{Binding Description}"/>
-                            <DataGridComboBoxColumn Header="Zwierzę" 
-                                                    x:Name="AnimalsComboBox"
-                                                    SelectedValueBinding="{Binding Path=Animal}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
