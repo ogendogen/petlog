@@ -93,6 +93,12 @@ namespace PetLog
 
             AnimalJoinDateDatePicker.DisplayDateStart = DateTime.MinValue;
             AnimalJoinDateDatePicker.DisplayDateEnd = DateTime.Today;
+
+            AnimalDeathDateDatePicker.DisplayDateStart = DateTime.MinValue;
+            AnimalDeathDateDatePicker.DisplayDateEnd = DateTime.Today;
+
+            AnimalLostDateDatePicker.DisplayDateStart = DateTime.MinValue;
+            AnimalLostDateDatePicker.DisplayDateEnd = DateTime.Today;
         }
 
         private void AdoptivesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -115,7 +121,7 @@ namespace PetLog
                 {
                     if (IsAliveCheckbox.IsChecked.Value)
                     {
-                        if (!AnimalDeathDatePicker.SelectedDate.HasValue)
+                        if (!AnimalDeathDateDatePicker.SelectedDate.HasValue)
                         {
                             MessageBox.Show("Data śmierci nie jest wybrana!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
                             return;
@@ -123,7 +129,7 @@ namespace PetLog
 
                         Animal.DeathInfo = new Death()
                         {
-                            Date = AnimalDeathDatePicker.SelectedDate.Value,
+                            Date = AnimalDeathDateDatePicker.SelectedDate.Value,
                             Description = AnimalDeathDescriptionTextBox.Text
                         };
                     }
@@ -260,6 +266,22 @@ namespace PetLog
         private void AdoptiveFlatNumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             AllowOnlyDigits(e);
+        }
+
+        private void IsAliveCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (AnimalDeathDateDatePicker.SelectedDate == null)
+            {
+                AnimalDeathDateDatePicker.SelectedDate = DateTime.Today;
+            }
+        }
+
+        private void IsLostCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (AnimalLostDateDatePicker.SelectedDate == null)
+            {
+                AnimalLostDateDatePicker.SelectedDate = DateTime.Today;
+            }
         }
     }
 }
