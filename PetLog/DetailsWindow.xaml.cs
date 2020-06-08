@@ -185,7 +185,8 @@ namespace PetLog
                     VerifyLost();
 
                     AnimalsManager.UpdateAnimal(Animal);
-                    AnimalsManager.SaveChanges();
+                    MessageBox.Show("Edycja powiodła się!", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
                 }
                 catch (Exception ex)
                 {
