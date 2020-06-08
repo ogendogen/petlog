@@ -97,7 +97,8 @@ namespace Database
                 entity.Property(e => e.JoinDate).IsRequired();
                 
                 entity.HasMany(e => e.Vaccinations)
-                    .WithOne(e => e.Animal);
+                    .WithOne(e => e.Animal)
+                    .OnDelete(DeleteBehavior.Cascade);
                 
                 entity.Property(e => e.Chip).IsRequired();
                 entity.HasIndex(e => e.Chip).IsUnique();
