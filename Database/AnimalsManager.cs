@@ -128,7 +128,7 @@ namespace Database
                 throw new Exception("Numer chip nie składa się z 15 cyfr!");
             }
 
-            if (Pet.Animals.Any(dbAnimal => dbAnimal.Chip == animal.Chip))
+            if (Pet.Animals.Any(dbAnimal => dbAnimal.Chip == animal.Chip && dbAnimal.ID != animal.ID))
             {
                 throw new Exception("Taki numer chip już istnieje w bazie!");
             }
