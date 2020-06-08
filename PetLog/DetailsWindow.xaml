@@ -24,7 +24,7 @@
                     <Label Content="ID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="AnimalIDTextBox" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="{Binding Path=ID}" IsReadOnly="True"/>
                     <Label Content="Imię" HorizontalAlignment="Left" Margin="108,9,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AnimalNameTextBox" HorizontalAlignment="Left" Margin="108,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Name}"/>
+                    <TextBox x:Name="AnimalNameTextBox" HorizontalAlignment="Left" Margin="108,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Name}" MaxLength="64"/>
                     <Label Content="Typ" HorizontalAlignment="Left" Margin="270,10,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="AnimalTypeComboBox" HorizontalAlignment="Left" Margin="270,35,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding Path=Type}">
                         <ComboBox.ItemTemplate>
@@ -34,17 +34,17 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     <Label Content="Data urodzin" HorizontalAlignment="Left" Margin="445,10,0,0" VerticalAlignment="Top"/>
-                    <DatePicker x:Name="AnimalBirthDateDatePicker" HorizontalAlignment="Left" Margin="445,34,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=BirthDate}"/>
+                    <DatePicker x:Name="AnimalBirthDateDatePicker" HorizontalAlignment="Left" Margin="445,34,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=BirthDate}" Focusable="False"/>
                     <Label Content="Data dołączenia" HorizontalAlignment="Left" Margin="598,10,0,0" VerticalAlignment="Top"/>
-                    <DatePicker HorizontalAlignment="Left" Margin="598,34,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=JoinDate}"/>
+                    <DatePicker x:Name="AnimalJoinDateDatePicker" HorizontalAlignment="Left" Margin="598,34,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=JoinDate}" Focusable="False"/>
                     <Label Content="Chip" HorizontalAlignment="Left" Margin="760,6,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AnimalChipTextBox" HorizontalAlignment="Left" Margin="760,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Chip}" PreviewTextInput="AnimalChipTextBox_PreviewTextInput"/>
+                    <TextBox x:Name="AnimalChipTextBox" HorizontalAlignment="Left" Margin="760,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Chip}" PreviewTextInput="AnimalChipTextBox_PreviewTextInput" MaxLength="15"/>
                     <Label Content="Opis zwierzęcia" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AnimalDescriptionTextBox" HorizontalAlignment="Left" Margin="10,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Description}"/>
+                    <TextBox x:Name="AnimalDescriptionTextBox" HorizontalAlignment="Left" Margin="10,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Description}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
                     <Label Content="Stan zwierzęcia" HorizontalAlignment="Left" Margin="300,86,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AnimalStateTextBox" HorizontalAlignment="Left" Margin="300,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=State}"/>
+                    <TextBox x:Name="AnimalStateTextBox" HorizontalAlignment="Left" Margin="300,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=State}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
                     <Label Content="Zabiegi u weterynarza" HorizontalAlignment="Left" Margin="598,86,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AnimalStateTextBox_Copy" HorizontalAlignment="Left" Margin="598,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Treatments}"/>
+                    <TextBox x:Name="AnimalStateTextBox_Copy" HorizontalAlignment="Left" Margin="598,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Treatments}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Adoptujący" Name="AdoptiveTab">
@@ -117,7 +117,7 @@
         </TabControl>
         <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">
             <Button x:Name="SaveButton" Content="Zapisz" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="35" Margin="0,0,0,0" FontSize="20" Click="SaveButton_Click"/>
-            <Button x:Name="CancelButton" Content="Anuluj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="35" Margin="260,0,0,0" FontSize="20"/>
+            <Button x:Name="CancelButton" Content="Anuluj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="35" Margin="260,0,0,0" FontSize="20" Click="CancelButton_Click"/>
         </Grid>
     </Grid>
 </Window>

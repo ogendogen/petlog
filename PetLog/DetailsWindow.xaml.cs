@@ -43,7 +43,11 @@ namespace PetLog
         {
             InitializeComponent();
             AnimalsManager = animalsManager;
-            Animal = new Animal();
+            Animal = new Animal()
+            {
+                BirthDate = new DateTime(DateTime.Now.Year, 1, 1),
+                JoinDate = DateTime.Today
+            };
 
             Mode = Mode.Add;
             SaveButton.Content = "Dodaj";
@@ -53,8 +57,8 @@ namespace PetLog
 
         private void AnimalChipTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            string input = sender.ToString();
-            e.Handled = input.All(x => Char.IsDigit(x));
+            string input = e.Text;
+            e.Handled = !input.All(x => Char.IsDigit(x));
         }
 
         private void InformationWindow_Loaded(object sender, RoutedEventArgs e)
@@ -79,6 +83,12 @@ namespace PetLog
                 Animal
             };
             AnimalsComboBox.ItemsSource = new ObservableCollection<Animal>(thisAnimalList);
+
+            AnimalBirthDateDatePicker.DisplayDateStart = DateTime.MinValue;
+            AnimalBirthDateDatePicker.DisplayDateEnd = DateTime.Today;
+
+            AnimalJoinDateDatePicker.DisplayDateStart = DateTime.MinValue;
+            AnimalJoinDateDatePicker.DisplayDateEnd = DateTime.Today;
         }
 
         private void AdoptivesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -202,6 +212,11 @@ namespace PetLog
             AdoptiveTab.DataContext = adoptive;
 
             AdoptivesComboBox.SelectedItem = null;
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
