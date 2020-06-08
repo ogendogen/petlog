@@ -38,6 +38,8 @@ namespace PetLog
                 {
                     MessageBox.Show(e.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
+                Environment.Exit(0);
             }
             catch (Exception e)
             {
