@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -26,6 +27,10 @@ namespace PetLog
         public AnimalsManager AnimalsManager { get; set; }
         public Animal Animal { get; set; }
         public ObservableCollection<Animal> Animals { get; set; }
+
+        private Regex emailRegex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+        private Regex postalCodeRegex = new Regex(@"\d{2}-\d{3}");
+
         public DetailsWindow(AnimalsManager animalsManager, Animal animal)
         {
             AnimalsManager = animalsManager;
@@ -57,8 +62,7 @@ namespace PetLog
 
         private void AnimalChipTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            string input = e.Text;
-            e.Handled = !input.All(x => Char.IsDigit(x));
+            AllowOnlyDigits(e);
         }
 
         private void InformationWindow_Loaded(object sender, RoutedEventArgs e)
@@ -217,6 +221,45 @@ namespace PetLog
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void AdoptiveEmailTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string input = ((TextBox)sender).Text;
+            if (!emailRegex.IsMatch(input))
+            {
+                MessageBox.Show("Niepoprawny adres email!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        private void AdoptiveTelephoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            AllowOnlyDigits(e);
+        }
+
+        private static void AllowOnlyDigits(TextCompositionEventArgs e)
+        {
+            string input = e.Text;
+            e.Handled = !input.All(x => Char.IsDigit(x));
+        }
+
+        private void AdoptivePostalCodeTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string input = ((TextBox)sender).Text;
+            if (!postalCodeRegex.IsMatch(input))
+            {
+                MessageBox.Show("Niepoprawny format kodu pocztowego!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        private void AdoptiveHouseNumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            AllowOnlyDigits(e);
+        }
+
+        private void AdoptiveFlatNumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            AllowOnlyDigits(e);
         }
     }
 }

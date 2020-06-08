@@ -92,6 +92,7 @@ namespace Database
                 LostInfo = lostInfo
             };
 
+            // todo: add transaction
             return Pet.Animals.Add(animal).Entity;
         }
 

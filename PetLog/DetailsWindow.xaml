@@ -52,31 +52,31 @@
                     <CheckBox Name="IsAdoptedCheckbox" Content="Adoptowany" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
                     <Label Content="Imię" HorizontalAlignment="Left" Margin="123,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Name="AdoptiveNameTextBox" HorizontalAlignment="Left" Margin="123,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Name}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox Name="AdoptiveNameTextBox" HorizontalAlignment="Left" Margin="123,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Name}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="32"/>
 
                     <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Name="AdoptiveSurnameTextBox" HorizontalAlignment="Left" Margin="260,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Surname}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox Name="AdoptiveSurnameTextBox" HorizontalAlignment="Left" Margin="260,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Surname}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="32"/>
 
                     <Label Content="Email" HorizontalAlignment="Left" Margin="397,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AdoptiveEmailTextBox" HorizontalAlignment="Left" Margin="397,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Email}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveEmailTextBox" HorizontalAlignment="Left" Margin="397,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Email}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" LostFocus="AdoptiveEmailTextBox_LostFocus"/>
 
                     <Label Content="Numer Telefonu" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AdoptiveTelephoneTextBox" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Telephone}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveTelephoneTextBox" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Telephone}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" PreviewTextInput="AdoptiveTelephoneTextBox_PreviewTextInput" MaxLength="9"/>
 
                     <Label Content="Miasto" HorizontalAlignment="Left" Margin="147,69,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AdoptiveCityTextBox" HorizontalAlignment="Left" Margin="147,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding City}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveCityTextBox" HorizontalAlignment="Left" Margin="147,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding City}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="64"/>
 
                     <Label Content="Ulica" HorizontalAlignment="Left" Margin="284,69,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AdoptiveStreetTextBox" HorizontalAlignment="Left" Margin="284,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Street}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveStreetTextBox" HorizontalAlignment="Left" Margin="284,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Street}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="64"/>
 
                     <Label Content="Kod Pocztowy" HorizontalAlignment="Left" Margin="421,69,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AdoptivePostalCodeTextBox" HorizontalAlignment="Left" Margin="421,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding PostalCode}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptivePostalCodeTextBox" HorizontalAlignment="Left" Margin="421,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding PostalCode}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="6" LostFocus="AdoptivePostalCodeTextBox_LostFocus"/>
 
                     <Label Content="Numer Domu" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AdoptiveHouseNumberTextBox" HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding HouseNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveHouseNumberTextBox" HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding HouseNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="3" PreviewTextInput="AdoptiveHouseNumberTextBox_PreviewTextInput"/>
 
                     <Label Content="Numer Mieszkania" HorizontalAlignment="Left" Margin="147,127,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AdoptiveFlatNumberTextBox" HorizontalAlignment="Left" Margin="147,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding FlatNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}"/>
+                    <TextBox x:Name="AdoptiveFlatNumberTextBox" HorizontalAlignment="Left" Margin="147,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding FlatNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="3" PreviewTextInput="AdoptiveFlatNumberTextBox_PreviewTextInput"/>
 
                     <Label Content="Lub wybierz z istniejących adoptujących:" HorizontalAlignment="Left" Margin="618,18,0,0" VerticalAlignment="Top"/>
                     <ComboBox Name="AdoptivesComboBox" HorizontalAlignment="Left" Margin="618,44,0,0" VerticalAlignment="Top" Width="171" SelectionChanged="AdoptivesComboBox_SelectionChanged"/>
