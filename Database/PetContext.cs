@@ -10,6 +10,8 @@ namespace Database
         internal DbSet<User> Users { get; set; }
         internal DbSet<Adoptive> Adoptives { get; set; }
         public DbSet<Vaccination> Vaccination { get; set; }
+        public DbSet<Death> Death { get; set; }
+        public DbSet<Lost> Lost { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

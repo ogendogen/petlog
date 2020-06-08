@@ -138,7 +138,7 @@ namespace Database
 
         public void RemoveAnimal(Animal animal)
         {
-            if (!Pet.Animals.Any(animal => animal.ID == animal.ID))
+            if (!Pet.Animals.Any(animalDb => animalDb.ID == animal.ID))
             {
                 throw new Exception("Taki zwierzak nie istnieje!");
             }
@@ -164,6 +164,26 @@ namespace Database
         public int SaveChanges()
         {
             return Pet.SaveChanges();
+        }
+
+        public void RemoveDeath(Death deathInfo)
+        {
+            if (!Pet.Death.Any(deathDb => deathDb.ID == deathInfo.ID))
+            {
+                throw new Exception("Taki obiekt zgonu nie istnieje!");
+            }
+
+            Pet.Death.Remove(deathInfo);
+        }
+
+        public void RemoveLost(Lost lostInfo)
+        {
+            if (!Pet.Lost.Any(lostDb => lostDb.ID == lostInfo.ID))
+            {
+                throw new Exception("Taki obiekt zaginienia nie istnieje!");
+            }
+
+            Pet.Lost.Remove(lostInfo);
         }
     }
 }

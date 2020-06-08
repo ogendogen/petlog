@@ -115,36 +115,6 @@ namespace PetLog
             {
                 try
                 {
-                    if (IsAliveCheckbox.IsChecked.Value)
-                    {
-                        if (!AnimalDeathDateDatePicker.SelectedDate.HasValue)
-                        {
-                            MessageBox.Show("Data śmierci nie jest wybrana!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            return;
-                        }
-
-                        Animal.DeathInfo = new Death()
-                        {
-                            Date = AnimalDeathDateDatePicker.SelectedDate.Value,
-                            Description = AnimalDeathDescriptionTextBox.Text
-                        };
-                    }
-
-                    if (IsLostCheckbox.IsChecked.Value)
-                    {
-                        if (!AnimalLostDateDatePicker.SelectedDate.HasValue)
-                        {
-                            MessageBox.Show("Data ucieczki nie jest wybrana!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            return;
-                        }
-
-                        Animal.LostInfo = new Lost()
-                        {
-                            Date = AnimalLostDateDatePicker.SelectedDate.Value,
-                            Description = AnimalLostDescriptionTextBox.Text
-                        };
-                    }
-
                     if (AdoptiveTelephoneTextBox.Text.Any(c => !Char.IsDigit(c)))
                     {
                         MessageBox.Show("Numer telefonu zawiera inne znaki niż cyfry!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -182,13 +152,9 @@ namespace PetLog
                         };
                     }
 
-                    HashSet<Vaccination> vaccinations = new HashSet<Vaccination>();
-                    vaccinations = vaccinations.Concat(VaccinationsDataGrid.Items.OfType<Vaccination>()).ToHashSet();
-                    foreach (var vacc in vaccinations)
-                    {
-                        vacc.Animal = Animal;
-                    }
-                    Animal.Vaccinations = vaccinations;
+                    Animal.Vaccinations = GetVaccinations();
+                    VerifyDeath();
+                    VerifyLost();
 
                     var addedAnimal = AnimalsManager.AddNewAnimal(Animal.Name,
                             Animal.Type,
@@ -214,13 +180,89 @@ namespace PetLog
             {
                 try
                 {
+                    Animal.Vaccinations = GetVaccinations();
+                    VerifyDeath();
+                    VerifyLost();
 
+                    AnimalsManager.UpdateAnimal(Animal);
+                    AnimalsManager.SaveChanges();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void VerifyLost()
+        {
+            if (IsLostCheckbox.IsChecked.Value)
+            {
+                if (!AnimalLostDateDatePicker.SelectedDate.HasValue)
+                {
+                    MessageBox.Show("Data ucieczki nie jest wybrana!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (Animal.LostInfo == null)
+                {
+                    Animal.LostInfo = new Lost()
+                    {
+                        Date = AnimalLostDateDatePicker.SelectedDate.Value,
+                        Description = AnimalLostDescriptionTextBox.Text
+                    };
+                }
+                else
+                {
+                    Animal.LostInfo.Date = AnimalLostDateDatePicker.SelectedDate.Value;
+                    Animal.LostInfo.Description = AnimalLostDescriptionTextBox.Text;
+                }
+            }
+            else if (!IsLostCheckbox.IsChecked.Value && Animal.LostInfo != null)
+            {
+                AnimalsManager.RemoveLost(Animal.LostInfo);
+            }
+        }
+
+        private void VerifyDeath()
+        {
+            if (IsAliveCheckbox.IsChecked.Value)
+            {
+                if (!AnimalDeathDateDatePicker.SelectedDate.HasValue)
+                {
+                    MessageBox.Show("Data śmierci nie jest wybrana!", "Uwaga", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (Animal.DeathInfo == null)
+                {
+                    Animal.DeathInfo = new Death()
+                    {
+                        Date = AnimalDeathDateDatePicker.SelectedDate.Value,
+                        Description = AnimalDeathDescriptionTextBox.Text
+                    };
+                }
+                else
+                {
+                    Animal.DeathInfo.Date = AnimalDeathDateDatePicker.SelectedDate.Value;
+                    Animal.DeathInfo.Description = AnimalDeathDescriptionTextBox.Text;
+                }
+            }
+            else if (!IsAliveCheckbox.IsChecked.Value && Animal.DeathInfo != null)
+            {
+                AnimalsManager.RemoveDeath(Animal.DeathInfo);
+            }
+        }
+
+        private HashSet<Vaccination> GetVaccinations()
+        {
+            HashSet<Vaccination> vaccinations = new HashSet<Vaccination>();
+            vaccinations = vaccinations.Concat(VaccinationsDataGrid.Items.OfType<Vaccination>()).ToHashSet();
+            foreach (var vacc in vaccinations)
+            {
+                vacc.Animal = Animal;
+            }
+            return vaccinations;
         }
 
         private void DiscardChoosenAdoptive_Click(object sender, RoutedEventArgs e)
