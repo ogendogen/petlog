@@ -99,6 +99,8 @@ namespace PetLog
 
             AnimalLostDateDatePicker.DisplayDateStart = DateTime.MinValue;
             AnimalLostDateDatePicker.DisplayDateEnd = DateTime.Today;
+
+            // TODO: add ranges for date picker in vaccination datagrid
         }
 
         private void AdoptivesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -13,7 +13,7 @@ namespace Database.Models
         public Animal Animal { get; set; }
         public Vaccination()
         {
-
+            Date = DateTime.Today;
         }
     }
 }
