@@ -202,8 +202,19 @@ namespace PetLog
                             Animal.Adoptive,
                             Animal.DeathInfo,
                             Animal.LostInfo);
-                    AnimalsManager.SaveChanges();
                     MessageBox.Show("Nowe zwierze dodane!", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Close();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else if (Mode == Mode.Edit)
+            {
+                try
+                {
+
                 }
                 catch(Exception ex)
                 {
