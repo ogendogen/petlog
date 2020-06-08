@@ -133,19 +133,17 @@ namespace Database
                 throw new Exception("Taki numer chip już istnieje w bazie!");
             }
 
-            using (var transaction = Pet.Database.BeginTransaction())
+            using var transaction = Pet.Database.BeginTransaction();
+            try
             {
-                try
-                {
-                    Pet.Animals.Update(animal);
-                    Pet.SaveChanges();
-                    transaction.Commit();
-                }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    throw;
-                }
+                Pet.Animals.Update(animal);
+                Pet.SaveChanges();
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw;
             }
         }
 

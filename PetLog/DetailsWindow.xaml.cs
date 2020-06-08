@@ -28,8 +28,8 @@ namespace PetLog
         public Animal Animal { get; set; }
         public ObservableCollection<Animal> Animals { get; set; }
 
-        private Regex emailRegex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
-        private Regex postalCodeRegex = new Regex(@"\d{2}-\d{3}");
+        private readonly Regex emailRegex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+        private readonly Regex postalCodeRegex = new Regex(@"\d{2}-\d{3}");
 
         public DetailsWindow(AnimalsManager animalsManager, Animal animal)
         {
