@@ -92,8 +92,23 @@ namespace Database
                 LostInfo = lostInfo
             };
 
-            // todo: add transaction
-            return Pet.Animals.Add(animal).Entity;
+            Animal addedAnimal;
+            using (var transaction = Pet.Database.BeginTransaction())
+            {
+                try
+                {
+                    addedAnimal = Pet.Animals.Add(animal).Entity;
+                    Pet.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+
+            return addedAnimal;
         }
 
         public IEnumerable<Adoptive> GetAllAdoptivesInAlphabeticalOrder()
