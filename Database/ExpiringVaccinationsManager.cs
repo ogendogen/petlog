@@ -15,9 +15,15 @@ namespace Database
             Pet = new PetContext();
             Pet.Database.EnsureCreated();
         }
+        
         public List<ExpiringVaccination> GetExpiringVaccinations()
         {
             return Pet.ExpiringVaccination.ToList();
+        }
+
+        public int Count()
+        {
+            return Pet.ExpiringVaccination.Count();
         }
     }
 }

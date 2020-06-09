@@ -45,7 +45,7 @@
             <Button Grid.Column="1" x:Name="EditButton" Content="Edytuj" HorizontalAlignment="Left" Margin="260,0,0,0" VerticalAlignment="Top" Height="35" Width="240" FontSize="20" Click="EditButton_Click"/>
             <Button Grid.Column="2" x:Name="DeleteButton" HorizontalAlignment="Left" Margin="500,0,0,0" VerticalAlignment="Top" Height="35" Width="240" Content="Usuń" FontSize="20" Click="DeleteButton_Click"/>
             <Button Grid.Column="3" x:Name="UsersButton" HorizontalAlignment="Left" Margin="740,0,0,0" VerticalAlignment="Top" Height="35" Width="240" Content="Użytkownicy" FontSize="20" Click="UsersButton_Click"/>
-            <Button Grid.Column="4" x:Name="ExpiringVaccinationsButton" HorizontalAlignment="Left" Margin="980,0,0,0" VerticalAlignment="Top" Height="35" Width="240" Content="Wygasające szczepienia" FontSize="20" Visibility="Visible" Click="ExpiringVaccinationsButton_Click" Foreground="Red" FontWeight="Heavy"/>
+            <Button Grid.Column="4" x:Name="ExpiringVaccinationsButton" HorizontalAlignment="Left" Margin="980,0,0,0" VerticalAlignment="Top" Height="35" Width="240" Content="Szczepienia" FontSize="20" Visibility="Visible" Click="ExpiringVaccinationsButton_Click" Foreground="Red" FontWeight="Heavy"/>
         </Grid>
     </Grid>
 </Window>

@@ -38,13 +38,29 @@ namespace PetLog
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (User.IsAdmin)
+            int expiringVaccinationsCount = ExpiringVaccinationsManager.Count();
+            if (User.IsAdmin && expiringVaccinationsCount > 0)
             {
                 UsersButton.Visibility = Visibility.Visible;
+                ExpiringVaccinationsButton.Visibility = Visibility.Visible;
+                ExpiringVaccinationsButton.Content += $" ({expiringVaccinationsCount})";
+            }
+            else if (!User.IsAdmin && expiringVaccinationsCount > 0)
+            {
+                UsersButton.Visibility = Visibility.Collapsed;
+                ExpiringVaccinationsButton.Visibility = Visibility.Visible;
+                ExpiringVaccinationsButton.Content += $" ({expiringVaccinationsCount})";
+                ExpiringVaccinationsButton.Margin = new Thickness(ExpiringVaccinationsButton.Margin.Left - 240, ExpiringVaccinationsButton.Margin.Top, ExpiringVaccinationsButton.Margin.Right, ExpiringVaccinationsButton.Margin.Bottom);
+            }
+            else if (User.IsAdmin && expiringVaccinationsCount == 0)
+            {
+                UsersButton.Visibility = Visibility.Visible;
+                ExpiringVaccinationsButton.Visibility = Visibility.Collapsed;
             }
             else
             {
                 UsersButton.Visibility = Visibility.Collapsed;
+                ExpiringVaccinationsButton.Visibility = Visibility.Collapsed;
             }
         }
 
