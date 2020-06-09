@@ -16,7 +16,7 @@ namespace Database
         public PetContext()
         {
             Database.ExecuteSqlRaw($"CREATE VIEW View_ExpiringVaccination AS " +
-                                    "SELECT Name AS \"Imie\", vaccination.Date AS \"Data szczepienia\", DATE_ADD(vaccination.Date, INTERVAL 1 YEAR) AS \"Data ważności\" FROM animals" +
+                                    "SELECT Name AS \"Imię\", vaccination.Date AS \"Data szczepienia\", DATE_ADD(vaccination.Date, INTERVAL 1 YEAR) AS \"Data ważności\" FROM animals" +
                                     "LEFT JOIN vaccination ON animals.ID = vaccination.AnimalID" +
                                     "LEFT JOIN death ON animals.ID = death.AnimalID" +
                                     "LEFT JOIN lost ON animals.ID = lost.AnimalID" +
@@ -128,6 +128,16 @@ namespace Database
                 entity.HasOne(e => e.LostInfo)
                     .WithOne(e => e.Animal)
                     .HasForeignKey<Lost>(e => e.AnimalID);
+            });
+
+            modelBuilder.Entity<ExpiringVaccination>(entity =>
+            {
+                entity.HasNoKey();
+                entity.ToView("View_ExpiringVaccination");
+                
+                entity.Property(v => v.Name).HasColumnName("Imię");
+                entity.Property(v => v.VaccinationDate).HasColumnName("Data szczepienia");
+                entity.Property(v => v.ExpireDate).HasColumnName("Data ważności");
             });
         }
     }
