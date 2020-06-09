@@ -63,7 +63,7 @@ namespace PetLog
                 return;
             }
             
-            AnimalsWindow animalsWindow = new AnimalsWindow(user);
+            AnimalsWindow animalsWindow = new AnimalsWindow(user, UsersManager);
             animalsWindow.Show();
 
             Close();

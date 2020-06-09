@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Database.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Database
@@ -70,6 +72,12 @@ namespace Database
         public int SaveChanges()
         {
             return Pet.SaveChanges();
+        }
+
+        public ObservableCollection<User> GetAllUsers()
+        {
+            Pet.Users.Load();
+            return Pet.Users.Local.ToObservableCollection();
         }
 
         private string HashMD5(string password)
