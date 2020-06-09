@@ -16,13 +16,15 @@ namespace Database
 
         public PetContext()
         {
-            Database.ExecuteSqlRaw($"CREATE VIEW View_ExpiringVaccination AS " +
-                                    "SELECT Name AS \"Imię\", vaccination.Date AS \"Data szczepienia\", DATE_ADD(vaccination.Date, INTERVAL 1 YEAR) AS \"Data ważności\" FROM animals" +
-                                    "LEFT JOIN vaccination ON animals.ID = vaccination.AnimalID" +
-                                    "LEFT JOIN death ON animals.ID = death.AnimalID" +
-                                    "LEFT JOIN lost ON animals.ID = lost.AnimalID" +
-                                    "WHERE CURRENT_DATE() > DATE_ADD(DATE_ADD(vaccination.Date, INTERVAL 1 YEAR), INTERVAL - 1 WEEK)" +
-                                    "AND CURRENT_DATE() < DATE_ADD(vaccination.Date, INTERVAL 1 YEAR)");
+            string viewQuery = "CREATE VIEW IF NOT EXISTS View_ExpiringVaccination AS " +
+                                    "SELECT Name AS \"Imię\", vaccination.Date AS \"Data szczepienia\", DATE_ADD(vaccination.Date, INTERVAL 1 YEAR) AS \"Data ważności\" FROM animals " +
+                                    "LEFT JOIN vaccination ON animals.ID = vaccination.AnimalID " +
+                                    "LEFT JOIN death ON animals.ID = death.AnimalID " +
+                                    "LEFT JOIN lost ON animals.ID = lost.AnimalID " +
+                                    "WHERE CURRENT_DATE() > DATE_ADD(DATE_ADD(vaccination.Date, INTERVAL 1 YEAR), INTERVAL - 1 WEEK) " +
+                                    "AND CURRENT_DATE() < DATE_ADD(vaccination.Date, INTERVAL 1 YEAR)";
+
+            Database.ExecuteSqlRaw(viewQuery);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

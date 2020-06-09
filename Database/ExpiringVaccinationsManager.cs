@@ -10,6 +10,11 @@ namespace Database
     {
         internal PetContext Pet { get; set; }
 
+        public ExpiringVaccinationsManager()
+        {
+            Pet = new PetContext();
+            Pet.Database.EnsureCreated();
+        }
         public List<ExpiringVaccination> GetExpiringVaccinations()
         {
             return Pet.ExpiringVaccination.ToList();
