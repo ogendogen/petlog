@@ -12,6 +12,20 @@ namespace Database
         public DbSet<Vaccination> Vaccination { get; set; }
         public DbSet<Death> Death { get; set; }
         public DbSet<Lost> Lost { get; set; }
+        public DbSet<ExpiringVaccination> ExpiringVaccination { get; set; }
+
+        public PetContext()
+        {
+            string viewQuery = "CREATE VIEW IF NOT EXISTS View_ExpiringVaccination AS " +
+                                    "SELECT Name AS \"Imię\", vaccination.Date AS \"Data szczepienia\", DATE_ADD(vaccination.Date, INTERVAL 1 YEAR) AS \"Data ważności\" FROM animals " +
+                                    "LEFT JOIN vaccination ON animals.ID = vaccination.AnimalID " +
+                                    "LEFT JOIN death ON animals.ID = death.AnimalID " +
+                                    "LEFT JOIN lost ON animals.ID = lost.AnimalID " +
+                                    "WHERE CURRENT_DATE() > DATE_ADD(DATE_ADD(vaccination.Date, INTERVAL 1 YEAR), INTERVAL - 1 WEEK) " +
+                                    "AND CURRENT_DATE() < DATE_ADD(vaccination.Date, INTERVAL 1 YEAR)";
+
+            Database.ExecuteSqlRaw(viewQuery);
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -117,6 +131,16 @@ namespace Database
                 entity.HasOne(e => e.LostInfo)
                     .WithOne(e => e.Animal)
                     .HasForeignKey<Lost>(e => e.AnimalID);
+            });
+
+            modelBuilder.Entity<ExpiringVaccination>(entity =>
+            {
+                entity.HasNoKey();
+                entity.ToView("View_ExpiringVaccination");
+                
+                entity.Property(v => v.Name).HasColumnName("Imię");
+                entity.Property(v => v.VaccinationDate).HasColumnName("Data szczepienia");
+                entity.Property(v => v.ExpireDate).HasColumnName("Data ważności");
             });
         }
     }

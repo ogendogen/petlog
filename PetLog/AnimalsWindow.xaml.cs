@@ -23,11 +23,13 @@ namespace PetLog
         public User User { get; }
         public AnimalsManager AnimalsManager { get; set; }
         public ObservableCollection<Animal> Animals { get; set; }
+        public ExpiringVaccinationsManager ExpiringVaccinationsManager { get; set; }
         public AnimalsWindow(User user)
         {
             InitializeComponent();
             User = user;
             AnimalsManager = new AnimalsManager();
+            ExpiringVaccinationsManager = new ExpiringVaccinationsManager();
             Animals = AnimalsManager.Load();
             AnimalsGrid.ItemsSource = Animals;
 
@@ -36,13 +38,29 @@ namespace PetLog
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (User.IsAdmin)
+            int expiringVaccinationsCount = ExpiringVaccinationsManager.Count();
+            if (User.IsAdmin && expiringVaccinationsCount > 0)
             {
                 UsersButton.Visibility = Visibility.Visible;
+                ExpiringVaccinationsButton.Visibility = Visibility.Visible;
+                ExpiringVaccinationsButton.Content += $" ({expiringVaccinationsCount})";
+            }
+            else if (!User.IsAdmin && expiringVaccinationsCount > 0)
+            {
+                UsersButton.Visibility = Visibility.Collapsed;
+                ExpiringVaccinationsButton.Visibility = Visibility.Visible;
+                ExpiringVaccinationsButton.Content += $" ({expiringVaccinationsCount})";
+                ExpiringVaccinationsButton.Margin = new Thickness(ExpiringVaccinationsButton.Margin.Left - 240, ExpiringVaccinationsButton.Margin.Top, ExpiringVaccinationsButton.Margin.Right, ExpiringVaccinationsButton.Margin.Bottom);
+            }
+            else if (User.IsAdmin && expiringVaccinationsCount == 0)
+            {
+                UsersButton.Visibility = Visibility.Visible;
+                ExpiringVaccinationsButton.Visibility = Visibility.Collapsed;
             }
             else
             {
                 UsersButton.Visibility = Visibility.Collapsed;
+                ExpiringVaccinationsButton.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -87,6 +105,12 @@ namespace PetLog
         private void UsersButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Tutaj powstanie okno z użytkownikami :)", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void ExpiringVaccinationsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExpiringVaccinationsWindow expiringVaccinationsWindow = new ExpiringVaccinationsWindow(ExpiringVaccinationsManager);
+            expiringVaccinationsWindow.Show();
         }
     }
 }
