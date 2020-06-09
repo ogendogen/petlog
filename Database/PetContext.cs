@@ -12,6 +12,7 @@ namespace Database
         public DbSet<Vaccination> Vaccination { get; set; }
         public DbSet<Death> Death { get; set; }
         public DbSet<Lost> Lost { get; set; }
+        public DbSet<ExpiringVaccination> ExpiringVaccination { get; set; }
 
         public PetContext()
         {
