@@ -1,0 +1,131 @@
+﻿<Window Name="InformationWindow" x:Class="PetLog.DetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PetLog"
+        xmlns:converters="clr-namespace:PetLog.Converters"
+        mc:Ignorable="d"
+        Title="DetailsWindow" Height="450" Width="950" MinHeight="450" MinWidth="950" Loaded="InformationWindow_Loaded">
+    <Window.Resources>
+        <converters:AnimalConverter x:Key="AnimalConverterKey"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" Grid.Column="0">
+            <TabItem Header="Zwierze" Name="AnimalTab">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="ID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalIDTextBox" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="{Binding Path=ID}" IsReadOnly="True"/>
+                    <Label Content="Imię" HorizontalAlignment="Left" Margin="108,9,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalNameTextBox" HorizontalAlignment="Left" Margin="108,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Name}" MaxLength="64"/>
+                    <Label Content="Typ" HorizontalAlignment="Left" Margin="270,10,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="AnimalTypeComboBox" HorizontalAlignment="Left" Margin="270,35,0,0" VerticalAlignment="Top" Width="120" SelectedItem="{Binding Path=Type}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource AnimalConverterKey}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Label Content="Data urodzin" HorizontalAlignment="Left" Margin="445,10,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="AnimalBirthDateDatePicker" HorizontalAlignment="Left" Margin="445,34,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=BirthDate}" Focusable="False"/>
+                    <Label Content="Data dołączenia" HorizontalAlignment="Left" Margin="598,10,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="AnimalJoinDateDatePicker" HorizontalAlignment="Left" Margin="598,34,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=JoinDate}" Focusable="False"/>
+                    <Label Content="Chip" HorizontalAlignment="Left" Margin="760,6,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalChipTextBox" HorizontalAlignment="Left" Margin="760,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Chip}" PreviewTextInput="AnimalChipTextBox_PreviewTextInput" MaxLength="15"/>
+                    <Label Content="Opis zwierzęcia" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalDescriptionTextBox" HorizontalAlignment="Left" Margin="10,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Description}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
+                    <Label Content="Stan zwierzęcia" HorizontalAlignment="Left" Margin="300,86,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalStateTextBox" HorizontalAlignment="Left" Margin="300,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=State}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
+                    <Label Content="Zabiegi u weterynarza" HorizontalAlignment="Left" Margin="598,86,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AnimalStateTextBox_Copy" HorizontalAlignment="Left" Margin="598,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Treatments}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Adoptujący" Name="AdoptiveTab">
+                <Grid Background="#FFE5E5E5">
+                    <CheckBox Name="IsAdoptedCheckbox" Content="Adoptowany" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+                    <Label Content="Imię" HorizontalAlignment="Left" Margin="123,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="AdoptiveNameTextBox" HorizontalAlignment="Left" Margin="123,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Name}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="32"/>
+
+                    <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="AdoptiveSurnameTextBox" HorizontalAlignment="Left" Margin="260,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Surname}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="32"/>
+
+                    <Label Content="Email" HorizontalAlignment="Left" Margin="397,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AdoptiveEmailTextBox" HorizontalAlignment="Left" Margin="397,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Email}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" LostFocus="AdoptiveEmailTextBox_LostFocus"/>
+
+                    <Label Content="Numer Telefonu" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AdoptiveTelephoneTextBox" HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Telephone}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" PreviewTextInput="AdoptiveTelephoneTextBox_PreviewTextInput" MaxLength="9"/>
+
+                    <Label Content="Miasto" HorizontalAlignment="Left" Margin="147,69,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AdoptiveCityTextBox" HorizontalAlignment="Left" Margin="147,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding City}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="64"/>
+
+                    <Label Content="Ulica" HorizontalAlignment="Left" Margin="284,69,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AdoptiveStreetTextBox" HorizontalAlignment="Left" Margin="284,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Street}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="64"/>
+
+                    <Label Content="Kod Pocztowy" HorizontalAlignment="Left" Margin="421,69,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AdoptivePostalCodeTextBox" HorizontalAlignment="Left" Margin="421,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding PostalCode}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="6" LostFocus="AdoptivePostalCodeTextBox_LostFocus"/>
+
+                    <Label Content="Numer Domu" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AdoptiveHouseNumberTextBox" HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding HouseNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="3" PreviewTextInput="AdoptiveHouseNumberTextBox_PreviewTextInput"/>
+
+                    <Label Content="Numer Mieszkania" HorizontalAlignment="Left" Margin="147,127,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="AdoptiveFlatNumberTextBox" HorizontalAlignment="Left" Margin="147,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding FlatNumber}" IsEnabled="{Binding ElementName=IsAdoptedCheckbox, Path=IsChecked}" MaxLength="3" PreviewTextInput="AdoptiveFlatNumberTextBox_PreviewTextInput"/>
+
+                    <Label Content="Lub wybierz z istniejących adoptujących:" HorizontalAlignment="Left" Margin="618,18,0,0" VerticalAlignment="Top"/>
+                    <ComboBox Name="AdoptivesComboBox" HorizontalAlignment="Left" Margin="618,44,0,0" VerticalAlignment="Top" Width="171" SelectionChanged="AdoptivesComboBox_SelectionChanged"/>
+                    <Button x:Name="DiscardChoosenAdoptive" Content="Odznacz wybranego" HorizontalAlignment="Left" Margin="618,100,0,0" VerticalAlignment="Top" Width="128" IsEnabled="False" Click="DiscardChoosenAdoptive_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Zgon" Name="DeathTab">
+                <Grid Background="#FFE5E5E5">
+                    <CheckBox Name="IsAliveCheckbox" Content="Nie żyje" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="IsAliveCheckbox_Checked"/>
+                    <DatePicker Name="AnimalDeathDateDatePicker" HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}" SelectedDateFormat="Short" Focusable="False"/>
+                    <Label Content="Data zgonu" HorizontalAlignment="Left" Margin="109,6,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Szczegóły zgonu" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="AnimalDeathDescriptionTextBox" HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Ucieczka" Name="LostTab">
+                <Grid Background="#FFE5E5E5">
+                    <CheckBox Name="IsLostCheckbox" Content="Uciekł" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="IsLostCheckbox_Checked"/>
+                    <DatePicker Name="AnimalLostDateDatePicker" HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsLostCheckbox, Path=IsChecked}" SelectedDateFormat="Short" Focusable="False"/>
+                    <Label Content="Data ucieczki" HorizontalAlignment="Left" Margin="109,6,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Szczegóły ucieczki" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="AnimalLostDescriptionTextBox" HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsLostCheckbox, Path=IsChecked}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Szczepienia" Name="VaccinationTab">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid AutoGenerateColumns="False" Name="VaccinationsDataGrid" CanUserAddRows="True" SelectionUnit="FullRow">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Data szczepienia">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <DatePicker Name="AnimalVaccinationDateDatePicker" SelectedDate="{Binding Date, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Opis szczepienia" Binding="{Binding Description}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">
+            <Button x:Name="SaveButton" Content="Zapisz" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="35" Margin="0,0,0,0" FontSize="20" Click="SaveButton_Click"/>
+            <Button x:Name="CancelButton" Content="Anuluj" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="35" Margin="260,0,0,0" FontSize="20" Click="CancelButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>

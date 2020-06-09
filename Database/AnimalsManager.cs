@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -30,7 +31,8 @@ namespace Database
             return Pet.Animals.FirstOrDefault(animal => animal.ID == id);
         }
 
-        public Animal AddNewAnimal(AnimalType type,
+        public Animal AddNewAnimal(string name,
+                                 AnimalType type,
                                  DateTime birthDate,
                                  DateTime joinDate,
                                  ICollection<Vaccination> vaccinations,
@@ -76,6 +78,7 @@ namespace Database
 
             Animal animal = new Animal()
             {
+                Name = name,
                 Type = type,
                 BirthDate = birthDate,
                 JoinDate = joinDate,
@@ -89,7 +92,28 @@ namespace Database
                 LostInfo = lostInfo
             };
 
-            return Pet.Animals.Add(animal).Entity;
+            Animal addedAnimal;
+            using (var transaction = Pet.Database.BeginTransaction())
+            {
+                try
+                {
+                    addedAnimal = Pet.Animals.Add(animal).Entity;
+                    Pet.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+
+            return addedAnimal;
+        }
+
+        public IEnumerable<Adoptive> GetAllAdoptivesInAlphabeticalOrder()
+        {
+            return Pet.Adoptives.OrderBy(adoptive => adoptive.Name).ThenBy(adoptive => adoptive.Surname).ToList();
         }
 
         public void UpdateAnimal(Animal animal)
@@ -104,17 +128,28 @@ namespace Database
                 throw new Exception("Numer chip nie składa się z 15 cyfr!");
             }
 
-            if (Pet.Animals.Any(dbAnimal => dbAnimal.Chip == animal.Chip))
+            if (Pet.Animals.Any(dbAnimal => dbAnimal.Chip == animal.Chip && dbAnimal.ID != animal.ID))
             {
                 throw new Exception("Taki numer chip już istnieje w bazie!");
             }
 
-            Pet.Animals.Update(animal);
+            using var transaction = Pet.Database.BeginTransaction();
+            try
+            {
+                Pet.Animals.Update(animal);
+                Pet.SaveChanges();
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw;
+            }
         }
 
         public void RemoveAnimal(Animal animal)
         {
-            if (!Pet.Animals.Any(animal => animal.ID == animal.ID))
+            if (!Pet.Animals.Any(animalDb => animalDb.ID == animal.ID))
             {
                 throw new Exception("Taki zwierzak nie istnieje!");
             }
@@ -131,9 +166,35 @@ namespace Database
             return Pet.Animals.Local.ToObservableCollection();
         }
 
+        public ObservableCollection<Vaccination> GetAnimalVaccinations()
+        {
+            Pet.Vaccination.Include(vacc => vacc.Animal).Load();
+            return Pet.Vaccination.Local.ToObservableCollection();
+        }
+
         public int SaveChanges()
         {
             return Pet.SaveChanges();
+        }
+
+        public void RemoveDeath(Death deathInfo)
+        {
+            if (!Pet.Death.Any(deathDb => deathDb.ID == deathInfo.ID))
+            {
+                throw new Exception("Taki obiekt zgonu nie istnieje!");
+            }
+
+            Pet.Death.Remove(deathInfo);
+        }
+
+        public void RemoveLost(Lost lostInfo)
+        {
+            if (!Pet.Lost.Any(lostDb => lostDb.ID == lostInfo.ID))
+            {
+                throw new Exception("Taki obiekt zaginienia nie istnieje!");
+            }
+
+            Pet.Lost.Remove(lostInfo);
         }
     }
 }

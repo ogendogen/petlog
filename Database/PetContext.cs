@@ -9,6 +9,9 @@ namespace Database
         internal DbSet<Animal> Animals { get; set; }
         internal DbSet<User> Users { get; set; }
         internal DbSet<Adoptive> Adoptives { get; set; }
+        public DbSet<Vaccination> Vaccination { get; set; }
+        public DbSet<Death> Death { get; set; }
+        public DbSet<Lost> Lost { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -86,12 +89,16 @@ namespace Database
                 entity.Property(e => e.ID).IsRequired().ValueGeneratedOnAdd();
                 entity.HasKey(e => e.ID);
 
+                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.Name).HasDefaultValue("Bez Imienia");
+
                 entity.Property(e => e.Type).IsRequired();
                 entity.Property(e => e.BirthDate).IsRequired();
                 entity.Property(e => e.JoinDate).IsRequired();
                 
                 entity.HasMany(e => e.Vaccinations)
-                    .WithOne(e => e.Animal);
+                    .WithOne(e => e.Animal)
+                    .OnDelete(DeleteBehavior.Cascade);
                 
                 entity.Property(e => e.Chip).IsRequired();
                 entity.HasIndex(e => e.Chip).IsUnique();

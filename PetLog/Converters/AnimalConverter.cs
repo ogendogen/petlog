@@ -13,7 +13,7 @@ namespace PetLog.Converters
         {
             string originalEnum = ((AnimalType)value).ToString();
 
-            switch(originalEnum)
+            switch (originalEnum)
             {
                 case "Dog":
                     return "Pies";
@@ -23,6 +23,9 @@ namespace PetLog.Converters
 
                 case "Other":
                     return "Inny";
+
+                default:
+                    break;
             }
 
             return null;

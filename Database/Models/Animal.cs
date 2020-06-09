@@ -9,6 +9,8 @@ namespace Database.Models
     {
         public int ID { get; set; }
         public AnimalType Type { get; set; }
+                [MaxLength(64)]
+        public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime JoinDate { get; set; }
         public virtual ICollection<Vaccination> Vaccinations { get; set; }
@@ -21,5 +23,10 @@ namespace Database.Models
         public Adoptive? Adoptive { get; set; }
         public Death? DeathInfo { get; set; }
         public Lost? LostInfo { get; set; }
+
+        public override string? ToString()
+        {
+            return Name;
+        }
     }
 }
