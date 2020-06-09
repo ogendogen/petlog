@@ -49,6 +49,23 @@ namespace Database
             return Pet.Users.Add(user).Entity;
         }
 
+        public void HashPasswords()
+        {
+            foreach (var user in Pet.Users)
+            {
+                if (!IsMD5(user.Password))
+                {
+                    user.Password = HashMD5(user.Password);
+                }
+            }
+        }
+
+        private bool IsMD5(string password)
+        {
+            char[] md5Chars = { 'a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+            return password.Length == 32 && password.All(c => md5Chars.Contains(c));
+        }
+
         public void RemoveUser(User user)
         {
             if (!Pet.Users.Any(dbUser => dbUser.ID == user.ID))

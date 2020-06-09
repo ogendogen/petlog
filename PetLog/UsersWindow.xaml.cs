@@ -25,5 +25,11 @@ namespace PetLog
             UsersManager = usersManager;
             UsersDataGrid.ItemsSource = UsersManager.GetAllUsers();
         }
+
+        private void SaveUsersButton_Click(object sender, RoutedEventArgs e)
+        {
+            UsersManager.HashPasswords();
+            UsersManager.SaveChanges();
+        }
     }
 }
