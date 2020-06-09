@@ -6,8 +6,13 @@
         xmlns:local="clr-namespace:PetLog"
         mc:Ignorable="d"
         Title="ExpiringVaccinationsWindow" Height="450" Width="800">
-    <Grid Loaded="Grid_Loaded">
-        <DataGrid x:Name="ExpiringVaccinationsDataGrid"/>
-
+    <Grid>
+        <DataGrid x:Name="ExpiringVaccinationsDataGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Imię" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Data szczepienia" Binding="{Binding VaccinationDate}"/>
+                <DataGridTextColumn Header="Data wygaśnięcia szczepienia" Binding="{Binding ExpireDate}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

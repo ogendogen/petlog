@@ -23,11 +23,8 @@ namespace PetLog
         {
             InitializeComponent();
             Manager = manager;
-        }
-
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
             ExpiringVaccinationsDataGrid.ItemsSource = Manager.GetExpiringVaccinations();
+            ExpiringVaccinationsDataGrid.DataContext = Manager.GetExpiringVaccinations();
         }
     }
 }
