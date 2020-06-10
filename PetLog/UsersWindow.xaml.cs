@@ -41,5 +41,12 @@ namespace PetLog
                 MessageBox.Show(ex.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void CancelUsersButton_Click(object sender, RoutedEventArgs e)
+        {
+            UsersManager.RollBack();
+            MessageBox.Show("Zmiany wycofane!", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            Close();
+        }
     }
 }
