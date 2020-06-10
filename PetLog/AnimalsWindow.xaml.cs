@@ -21,15 +21,13 @@ namespace PetLog
     public partial class AnimalsWindow : Window
     {
         public User User { get; }
-        public UsersManager UsersManager { get; }
         public AnimalsManager AnimalsManager { get; set; }
         public ObservableCollection<Animal> Animals { get; set; }
         public ExpiringVaccinationsManager ExpiringVaccinationsManager { get; set; }
-        public AnimalsWindow(User user, UsersManager usersManager)
+        public AnimalsWindow(User user)
         {
             InitializeComponent();
             User = user;
-            UsersManager = usersManager;
             AnimalsManager = new AnimalsManager();
             ExpiringVaccinationsManager = new ExpiringVaccinationsManager();
             Animals = AnimalsManager.Load();
@@ -106,7 +104,7 @@ namespace PetLog
 
         private void UsersButton_Click(object sender, RoutedEventArgs e)
         {
-            UsersWindow usersWindow = new UsersWindow(UsersManager);
+            UsersWindow usersWindow = new UsersWindow();
             usersWindow.Show();
         }
 

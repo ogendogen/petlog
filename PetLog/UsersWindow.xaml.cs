@@ -19,10 +19,10 @@ namespace PetLog
     public partial class UsersWindow : Window
     {
         public UsersManager UsersManager { get; set; }
-        public UsersWindow(UsersManager usersManager)
+        public UsersWindow()
         {
             InitializeComponent();
-            UsersManager = usersManager;
+            UsersManager = new UsersManager();
             UsersDataGrid.ItemsSource = UsersManager.GetAllUsers();
         }
 
@@ -30,8 +30,8 @@ namespace PetLog
         {
             try
             {
-                UsersManager.HashPasswords();
                 UsersManager.SaveChanges();
+                UsersManager.HashPlainPasswords();
 
                 MessageBox.Show("Zmiany dokonane poprawnie!", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();

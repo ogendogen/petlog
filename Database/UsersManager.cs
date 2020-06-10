@@ -20,6 +20,11 @@ namespace Database
             Pet.Database.EnsureCreated();
         }
 
+        ~UsersManager()
+        {
+            Pet.Dispose();
+        }
+
         public User Login(string name, string password)
         {
             string hashedPassword = HashMD5(password);
@@ -49,7 +54,7 @@ namespace Database
             return Pet.Users.Add(user).Entity;
         }
 
-        public void HashPasswords()
+        public void HashPlainPasswords()
         {
             foreach (var user in Pet.Users)
             {
@@ -58,6 +63,7 @@ namespace Database
                     user.Password = HashMD5(user.Password);
                 }
             }
+            Pet.SaveChanges();
         }
 
         private bool IsMD5(string password)
