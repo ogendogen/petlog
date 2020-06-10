@@ -104,7 +104,8 @@ namespace PetLog
 
         private void UsersButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Tutaj powstanie okno z użytkownikami :)", "Informacja", MessageBoxButton.OK, MessageBoxImage.Information);
+            UsersWindow usersWindow = new UsersWindow();
+            usersWindow.Show();
         }
 
         private void ExpiringVaccinationsButton_Click(object sender, RoutedEventArgs e)
