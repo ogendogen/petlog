@@ -28,8 +28,18 @@ namespace PetLog
 
         private void SaveUsersButton_Click(object sender, RoutedEventArgs e)
         {
-            UsersManager.HashPasswords();
-            UsersManager.SaveChanges();
+            try
+            {
+                UsersManager.HashPasswords();
+                UsersManager.SaveChanges();
+
+                MessageBox.Show("Zmiany dokonane poprawnie!", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
