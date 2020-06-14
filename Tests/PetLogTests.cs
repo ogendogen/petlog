@@ -4,13 +4,22 @@ using NUnit.Framework;
 
 namespace Tests
 {
+    /// <summary>
+    /// Pet log test class
+    /// </summary>
     public class PetLogTests
     {
+        /// <summary>
+        /// Setup tests method
+        /// </summary>
         [SetUp]
         public void Setup()
         {
         }
 
+        /// <summary>
+        /// Test for sorted adoptives method
+        /// </summary>
         [Test]
         public void SortedAdoptivesTest()
         {
@@ -24,6 +33,9 @@ namespace Tests
             Assert.AreEqual(sortedAdoptives.Last().Surname, "Kowalski");
         }
 
+        /// <summary>
+        /// Test for updating user name
+        /// </summary>
         [Test]
         public void ChangeUserNameTest()
         {

@@ -19,18 +19,37 @@ using Microsoft.EntityFrameworkCore.Internal;
 namespace PetLog
 {
     /// <summary>
-    /// Interaction logic for DetailsWindow.xaml
+    /// Interaction logic for DetailsWindow.xaml - window with details of certain animal
     /// </summary>
     public partial class DetailsWindow : Window
     {
+        /// <summary>
+        /// Add or edit mode
+        /// </summary>
         public Mode Mode { get; set; }
+        /// <summary>
+        /// Animals manager instance
+        /// </summary>
         public AnimalsManager AnimalsManager { get; set; }
+        /// <summary>
+        /// Choosen animal or empty animal instance if adding new
+        /// </summary>
         public Animal Animal { get; set; }
-        public ObservableCollection<Animal> Animals { get; set; }
 
+        /// <summary>
+        /// Email regular expression
+        /// </summary>
         private readonly Regex emailRegex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+        /// <summary>
+        /// Postal code regular expression
+        /// </summary>
         private readonly Regex postalCodeRegex = new Regex(@"\d{2}-\d{3}");
 
+        /// <summary>
+        /// Details window constructor for edit mode
+        /// </summary>
+        /// <param name="animalsManager">Animals manager object</param>
+        /// <param name="animal">Animal entity choosen to edit</param>
         public DetailsWindow(AnimalsManager animalsManager, Animal animal)
         {
             AnimalsManager = animalsManager;
@@ -44,6 +63,10 @@ namespace PetLog
             VaccinationsDataGrid.ItemsSource = new ObservableCollection<Vaccination>(AnimalsManager.GetAnimalVaccinations().Where(vacc => vacc.Animal.ID == Animal.ID));
         }
 
+        /// <summary>
+        /// Details window constructor for add mode
+        /// </summary>
+        /// <param name="animalsManager">Animals manager object</param>
         public DetailsWindow(AnimalsManager animalsManager)
         {
             InitializeComponent();
@@ -60,11 +83,21 @@ namespace PetLog
             VaccinationsDataGrid.ItemsSource = new ObservableCollection<Vaccination>();
         }
 
+        /// <summary>
+        /// Preview animal's chip input - allow only digits
+        /// </summary>
+        /// <param name="sender">Input textbox object</param>
+        /// <param name="e">Event arguments</param>
         private void AnimalChipTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             AllowOnlyDigits(e);
         }
 
+        /// <summary>
+        /// Details windows loaded event - prepare data and components
+        /// </summary>
+        /// <param name="sender">Window object</param>
+        /// <param name="e">Event arguments</param>
         private void InformationWindow_Loaded(object sender, RoutedEventArgs e)
         {
             AnimalTypeComboBox.ItemsSource = Enum.GetValues(typeof(AnimalType)).Cast<AnimalType>();
@@ -93,10 +126,13 @@ namespace PetLog
 
             AnimalLostDateDatePicker.DisplayDateStart = DateTime.MinValue;
             AnimalLostDateDatePicker.DisplayDateEnd = DateTime.Today;
-
-            // TODO: add ranges for date picker in vaccination datagrid
         }
 
+        /// <summary>
+        /// Adoptives combobox selected event - if adoptive choosen then apply data
+        /// </summary>
+        /// <param name="sender">Combobox object</param>
+        /// <param name="e">Event arguments</param>
         private void AdoptivesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
@@ -109,6 +145,11 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Saves changes click event - does validations for add/edit mode
+        /// </summary>
+        /// <param name="sender">Clicked button object</param>
+        /// <param name="e">Event arguments</param>
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (Mode == Mode.Add)
@@ -195,6 +236,9 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Validate lost info data
+        /// </summary>
         private void VerifyLost()
         {
             if (IsLostCheckbox.IsChecked.Value)
@@ -225,6 +269,9 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Validate death info data
+        /// </summary>
         private void VerifyDeath()
         {
             if (IsAliveCheckbox.IsChecked.Value)
@@ -255,6 +302,10 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Get current vaccinations of animal and concat newly added to datagrid
+        /// </summary>
+        /// <returns>Hashset of all animal's vaccinations</returns>
         private HashSet<Vaccination> GetVaccinations()
         {
             HashSet<Vaccination> vaccinations = new HashSet<Vaccination>();
@@ -266,6 +317,11 @@ namespace PetLog
             return vaccinations;
         }
 
+        /// <summary>
+        /// Discard adoptive button click event - discards adoptive
+        /// </summary>
+        /// <param name="sender">Clicked button object</param>
+        /// <param name="e">Event arguments</param>
         private void DiscardChoosenAdoptive_Click(object sender, RoutedEventArgs e)
         {
             IsAdoptedCheckbox.IsChecked = false;
@@ -278,11 +334,21 @@ namespace PetLog
             AdoptivesComboBox.SelectedItem = null;
         }
 
+        /// <summary>
+        /// Cancel changes button event
+        /// </summary>
+        /// <param name="sender">Clicked button object</param>
+        /// <param name="e">Event arguments</param>
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Lost focus on email textbox event - fires validation
+        /// </summary>
+        /// <param name="sender">Email textbox object</param>
+        /// <param name="e">Event arguments</param>
         private void AdoptiveEmailTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             string input = ((TextBox)sender).Text;
@@ -292,17 +358,31 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Preview adoptive's telephone number input - allow only digits
+        /// </summary>
+        /// <param name="sender">Input textbox object</param>
+        /// <param name="e">Event arguments</param>
         private void AdoptiveTelephoneTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             AllowOnlyDigits(e);
         }
 
+        /// <summary>
+        /// Verifies if input textbox contains only digits
+        /// </summary>
+        /// <param name="e">Event arguments</param>
         private static void AllowOnlyDigits(TextCompositionEventArgs e)
         {
             string input = e.Text;
             e.Handled = !input.All(x => Char.IsDigit(x));
         }
 
+        /// <summary>
+        /// Validate postal code input on postal code textbox lost focus
+        /// </summary>
+        /// <param name="sender">Input textbox object</param>
+        /// <param name="e">Event arguments</param>
         private void AdoptivePostalCodeTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             string input = ((TextBox)sender).Text;
@@ -312,16 +392,31 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Preview adoptive's house number input - allow only digits
+        /// </summary>
+        /// <param name="sender">Input textbox object</param>
+        /// <param name="e">Event arguments</param>
         private void AdoptiveHouseNumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             AllowOnlyDigits(e);
         }
 
+        /// <summary>
+        /// Preview adoptive's flat number input - allow only digits
+        /// </summary>
+        /// <param name="sender">Input textbox object</param>
+        /// <param name="e">Event arguments</param>
         private void AdoptiveFlatNumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             AllowOnlyDigits(e);
         }
 
+        /// <summary>
+        /// Set death day to today if death checked is checked
+        /// </summary>
+        /// <param name="sender">Input checkbox object</param>
+        /// <param name="e">Event arguments</param>
         private void IsAliveCheckbox_Checked(object sender, RoutedEventArgs e)
         {
             if (AnimalDeathDateDatePicker.SelectedDate == null)
@@ -330,6 +425,11 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Set lost day to today if lost checked is checked
+        /// </summary>
+        /// <param name="sender">Input checkbox object</param>
+        /// <param name="e">Event arguments</param>
         private void IsLostCheckbox_Checked(object sender, RoutedEventArgs e)
         {
             if (AnimalLostDateDatePicker.SelectedDate == null)

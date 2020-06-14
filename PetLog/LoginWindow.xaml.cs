@@ -17,11 +17,17 @@ using Database;
 namespace PetLog
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for LoginWindow.xaml - login window
     /// </summary>
     public partial class LoginWindow : Window
     {
+        /// <summary>
+        /// Users manager
+        /// </summary>
         public UsersManager UsersManager { get; set; }
+        /// <summary>
+        /// Login window constructor - initialize users manager, checks connection to database and center window
+        /// </summary>
         public LoginWindow()
         {
             try
@@ -51,6 +57,11 @@ namespace PetLog
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Login button clicked - verify account credentials
+        /// </summary>
+        /// <param name="sender">Clicked button event</param>
+        /// <param name="e">Event arguments</param>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string login = LoginTextBox.Text;

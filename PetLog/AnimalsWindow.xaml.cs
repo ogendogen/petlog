@@ -16,14 +16,31 @@ using Database.Models;
 namespace PetLog
 {
     /// <summary>
-    /// Interaction logic for AnimalsWindow.xaml
+    /// Interaction logic for AnimalsWindow.xaml - main window with animals datagrid
     /// </summary>
     public partial class AnimalsWindow : Window
     {
+        /// <summary>
+        /// Logged in user passed from LoginWindow
+        /// </summary>
         public User User { get; }
+        /// <summary>
+        /// Animals manager
+        /// </summary>
         public AnimalsManager AnimalsManager { get; set; }
+        /// <summary>
+        /// Collection of all animals
+        /// </summary>
         public ObservableCollection<Animal> Animals { get; set; }
+        /// <summary>
+        /// Expiring vaccinations manager
+        /// </summary>
         public ExpiringVaccinationsManager ExpiringVaccinationsManager { get; set; }
+        
+        /// <summary>
+        /// Animals window constructor - initialize managers and loads animals to datagrid
+        /// </summary>
+        /// <param name="user">Entity of logged in user</param>
         public AnimalsWindow(User user)
         {
             InitializeComponent();
@@ -36,6 +53,11 @@ namespace PetLog
             MessageBox.Show($"Witaj {User.Name} {User.Surname}", "Powodzenie", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /// <summary>
+        /// Loaded window event, fires when window is loaded. Fits buttons to the user and content
+        /// </summary>
+        /// <param name="sender">Loaded window object</param>
+        /// <param name="e">Event arguments</param>
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             int expiringVaccinationsCount = ExpiringVaccinationsManager.Count();
@@ -64,12 +86,22 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Add button click event handler
+        /// </summary>
+        /// <param name="sender">Clicked button object</param>
+        /// <param name="e">Event arguments</param>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             DetailsWindow detailsWindow = new DetailsWindow(AnimalsManager);
             detailsWindow.ShowDialog();
         }
 
+        /// <summary>
+        /// Edit button click event handler
+        /// </summary>
+        /// <param name="sender">Clicked button object</param>
+        /// <param name="e">Event arguments</param>
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             if (AnimalsGrid.SelectedItem != null && !AnimalsGrid.SelectedItem.ToString().Contains("Placeholder"))
@@ -84,6 +116,11 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Delete button click event handler
+        /// </summary>
+        /// <param name="sender">Clicked button object</param>
+        /// <param name="e">Event arguments</param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (AnimalsGrid.SelectedItem != null && !AnimalsGrid.SelectedItem.ToString().Contains("Placeholder"))
@@ -102,12 +139,22 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Users button click event handler
+        /// </summary>
+        /// <param name="sender">Clicked button object</param>
+        /// <param name="e">Event arguments</param>
         private void UsersButton_Click(object sender, RoutedEventArgs e)
         {
             UsersWindow usersWindow = new UsersWindow();
             usersWindow.Show();
         }
 
+        /// <summary>
+        /// Expiring vaccinations button click event handler
+        /// </summary>
+        /// <param name="sender">Clicked button object</param>
+        /// <param name="e">Event arguments</param>
         private void ExpiringVaccinationsButton_Click(object sender, RoutedEventArgs e)
         {
             ExpiringVaccinationsWindow expiringVaccinationsWindow = new ExpiringVaccinationsWindow(ExpiringVaccinationsManager);
