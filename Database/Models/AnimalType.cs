@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Database.Models
 {
+    /// <summary>
+    /// Animal's type enum (dog, cat, other)
+    /// </summary>
     public enum AnimalType
     {
         Dog,
