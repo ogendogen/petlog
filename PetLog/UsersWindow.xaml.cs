@@ -14,11 +14,17 @@ using Database;
 namespace PetLog
 {
     /// <summary>
-    /// Interaction logic for UsersWindow.xaml
+    /// Interaction logic for UsersWindow.xaml - window with users
     /// </summary>
     public partial class UsersWindow : Window
     {
+        /// <summary>
+        /// Users manager instance
+        /// </summary>
         public UsersManager UsersManager { get; set; }
+        /// <summary>
+        /// Users window constructor - applies users data to datagrid
+        /// </summary>
         public UsersWindow()
         {
             InitializeComponent();
@@ -26,6 +32,11 @@ namespace PetLog
             UsersDataGrid.ItemsSource = UsersManager.GetAllUsers();
         }
 
+        /// <summary>
+        /// Save button clicked event - hashes plain passwords and save changes
+        /// </summary>
+        /// <param name="sender">Clicked save button</param>
+        /// <param name="e">Event arguments</param>
         private void SaveUsersButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -42,6 +53,11 @@ namespace PetLog
             }
         }
 
+        /// <summary>
+        /// Cancel button clicked event - rollback changes
+        /// </summary>
+        /// <param name="sender">Clicked cancel button</param>
+        /// <param name="e">Event arguments</param>
         private void CancelUsersButton_Click(object sender, RoutedEventArgs e)
         {
             UsersManager.RollBack();

@@ -4,16 +4,43 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Database
 {
+    /// <summary>
+    /// Pet context class
+    /// </summary>
     internal class PetContext : DbContext
     {
+        /// <summary>
+        /// Animals' db set
+        /// </summary>
         internal DbSet<Animal> Animals { get; set; }
+        /// <summary>
+        /// Users' db set
+        /// </summary>
         internal DbSet<User> Users { get; set; }
+        /// <summary>
+        /// Adoptives' db set
+        /// </summary>
         internal DbSet<Adoptive> Adoptives { get; set; }
+        /// <summary>
+        /// Vaccinations db set
+        /// </summary>
         public DbSet<Vaccination> Vaccination { get; set; }
+        /// <summary>
+        /// Death info's db set
+        /// </summary>
         public DbSet<Death> Death { get; set; }
+        /// <summary>
+        /// Lost infos' db set
+        /// </summary>
         public DbSet<Lost> Lost { get; set; }
+        /// <summary>
+        /// Expiring vaccinations' db set
+        /// </summary>
         public DbSet<ExpiringVaccination> ExpiringVaccination { get; set; }
 
+        /// <summary>
+        /// Pet context constructor, creates view for expiring vaccinations
+        /// </summary>
         public PetContext()
         {
             string viewQuery = "CREATE VIEW IF NOT EXISTS View_ExpiringVaccination AS " +
@@ -27,11 +54,19 @@ namespace Database
             Database.ExecuteSqlRaw(viewQuery);
         }
 
+        /// <summary>
+        /// Overrided method with database configuration
+        /// </summary>
+        /// <param name="optionsBuilder">DbContext options builder</param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySql("server=localhost;database=pet;user=root;password=");
         }
 
+        /// <summary>
+        /// Overrided method with model creation
+        /// </summary>
+        /// <param name="modelBuilder">DbContext model builder</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

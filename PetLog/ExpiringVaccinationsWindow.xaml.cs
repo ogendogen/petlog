@@ -14,11 +14,18 @@ using Database;
 namespace PetLog
 {
     /// <summary>
-    /// Interaction logic for ExpiringVaccinationsWindow.xaml
+    /// Interaction logic for ExpiringVaccinationsWindow.xaml - window with expiring vaccinations
     /// </summary>
     public partial class ExpiringVaccinationsWindow : Window
     {
+        /// <summary>
+        /// Expiring vaccinations manager
+        /// </summary>
         public ExpiringVaccinationsManager Manager { get; set; }
+        /// <summary>
+        /// Expiring vaccinations window - initialize data from manager
+        /// </summary>
+        /// <param name="manager">Expiring vaccinations manager</param>
         public ExpiringVaccinationsWindow(ExpiringVaccinationsManager manager)
         {
             InitializeComponent();

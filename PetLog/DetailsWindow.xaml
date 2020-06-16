@@ -40,11 +40,11 @@
                     <Label Content="Chip" HorizontalAlignment="Left" Margin="760,6,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="AnimalChipTextBox" HorizontalAlignment="Left" Margin="760,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding Path=Chip}" PreviewTextInput="AnimalChipTextBox_PreviewTextInput" MaxLength="15"/>
                     <Label Content="Opis zwierzęcia" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AnimalDescriptionTextBox" HorizontalAlignment="Left" Margin="10,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Description}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="AnimalDescriptionTextBox" HorizontalAlignment="Left" Margin="10,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Description}" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
                     <Label Content="Stan zwierzęcia" HorizontalAlignment="Left" Margin="300,86,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AnimalStateTextBox" HorizontalAlignment="Left" Margin="300,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=State}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="AnimalStateTextBox" HorizontalAlignment="Left" Margin="300,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=State}" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
                     <Label Content="Zabiegi u weterynarza" HorizontalAlignment="Left" Margin="598,86,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="AnimalStateTextBox_Copy" HorizontalAlignment="Left" Margin="598,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Treatments}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox x:Name="AnimalStateTextBox_Copy" HorizontalAlignment="Left" Margin="598,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="275" Height="232" Text="{Binding Path=Treatments}" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Adoptujący" Name="AdoptiveTab">
@@ -89,7 +89,7 @@
                     <DatePicker Name="AnimalDeathDateDatePicker" HorizontalAlignment="Left" Margin="109,32,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=Date}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}" SelectedDateFormat="Short" Focusable="False"/>
                     <Label Content="Data zgonu" HorizontalAlignment="Left" Margin="109,6,0,0" VerticalAlignment="Top"/>
                     <Label Content="Szczegóły zgonu" HorizontalAlignment="Left" Margin="255,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox Name="AnimalDeathDescriptionTextBox" HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto"/>
+                    <TextBox Name="AnimalDeathDescriptionTextBox" HorizontalAlignment="Left" Margin="255,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="187" Text="{Binding Path=Description}" IsEnabled="{Binding ElementName=IsAliveCheckbox, Path=IsChecked}" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Ucieczka" Name="LostTab">
