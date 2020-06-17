@@ -43,6 +43,11 @@ namespace Database
         /// </summary>
         public PetContext()
         {
+            
+        }
+
+        public void CreateView()
+        {
             string viewQuery = "CREATE VIEW IF NOT EXISTS View_ExpiringVaccination AS " +
                                     "SELECT Name AS \"Imię\", vaccination.Date AS \"Data szczepienia\", DATE_ADD(vaccination.Date, INTERVAL 1 YEAR) AS \"Data ważności\" FROM animals " +
                                     "LEFT JOIN vaccination ON animals.ID = vaccination.AnimalID " +

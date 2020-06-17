@@ -27,6 +27,7 @@ namespace Database
         {
             Pet = new PetContext();
             Pet.Database.EnsureCreated();
+            Pet.CreateView();
         }
 
         /// <summary>
