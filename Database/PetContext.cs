@@ -65,7 +65,7 @@ namespace Database
         /// <param name="optionsBuilder">DbContext options builder</param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;database=pet;user=root;password=");
+            optionsBuilder.UseMySql(ServerVersion.AutoDetect("server=localhost;database=pet;user=root;password="));
         }
 
         /// <summary>
